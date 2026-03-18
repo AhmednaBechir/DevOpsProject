@@ -1,1 +1,1 @@
- echo # DevOpsProject
+# DevOpsProject
