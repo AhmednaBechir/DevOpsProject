@@ -19,6 +19,7 @@ jobs:
           server-id: github
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
+          cache: 'maven'
       - name: Publish to GitHub Packages
         run: mvn deploy -DskipTests
         working-directory: ndarray-lib
