@@ -6,6 +6,7 @@ on:
       - "setup/CI"
       - "setup/CD"
       - "develop"
+      - "main"
   pull_request:
     branches:
       - main
