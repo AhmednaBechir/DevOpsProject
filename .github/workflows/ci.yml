@@ -2,9 +2,15 @@ name: CI
 
 on:
   push:
-    branches: ["**"]
+    branches:
+      - "setup/CI"
+      - "setup/CD"
+      - "develop"
+      - "main"
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - develop
 
 jobs:
   build:
