@@ -6,16 +6,16 @@ import java.util.List;
 
 public class Ndarray {
     List l;
-    double[] data; // J'ai pas encore cherché pour gerer à 2 dimensions
+    double[][] data; // J'ai pas encore cherché pour gerer à 2 dimensions
     int size;
     int ndim;
     int[] shape;
     String dtype; //Voir faire une enum
 
 
-    public Ndarray(double[] data_in,int size_in,  int ndim_in, int[] shape_in ) {
+    public Ndarray(double[][] data_in,int size_in,  int ndim_in, int[] shape_in ) {
 
-        this.data = new double[data_in.length];
+        this.data = new double[shape_in[0]][shape_in[1]];
         this.data = data_in.clone();
         this.size = size_in;
         this.ndim = ndim_in;
@@ -32,9 +32,12 @@ public class Ndarray {
             System.out.println("Erreur: Les matrices n'ont pas les mêmes dimensions");
             return;
         }
-        for (int i = 0; i< array_in.size;i++){
-            this.data[i]+= array_in.data[i];
-
+        int rows = this.shape[0];
+        int cols = this.shape[1];
+        for (int i = 0; i< rows;i++){
+            for (int j = 0; j < cols ; j++){
+                this.data[i][j]+= array_in.data[i][j];
+            }
         }
     }
 
@@ -43,9 +46,12 @@ public class Ndarray {
             System.out.println("Erreur: Les matrices n'ont pas les mêmes dimensions");
             return;
         }
-        for (int i = 0; i< array_in.size;i++){
-            this.data[i]-= array_in.data[i];
-
+        int rows = this.shape[0];
+        int cols = this.shape[1];
+        for (int i = 0; i< rows;i++){
+            for (int j = 0; j < cols ; j++){
+                this.data[i][j]-= array_in.data[i][j];
+            }
         }
     }
 
@@ -55,8 +61,24 @@ public class Ndarray {
 
     //A modifier pour que ça fonctionne à + de dimensions
     public void print(){
+        String str ="";
 
-        System.out.println(Arrays.toString(this.data));
+        if (this.shape[0] > 1){
+            str = str.concat("[");
+
+        }
+        for (int i = 0; i < this.shape[0]; i++){
+            str = str.concat(Arrays.toString(this.data[i]));
+            if (i < (this.shape[0]-1)){
+                str =  str.concat("\n");
+            }
+        }
+        if (this.shape[0] > 1){
+            str =  str.concat("]");
+
+        }
+
+        System.out.println(str);
     }
 
     List getList() {
