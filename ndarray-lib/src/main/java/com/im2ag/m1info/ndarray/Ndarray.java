@@ -54,18 +54,29 @@ public class Ndarray {
             }
         }
     }
-
     public void mul(Ndarray array_in){
 
+        int rows1 = this.shape[0];
+        int cols1 = this.shape[1];
+        int rows2 = array_in.shape[0];
+        int cols2 = array_in.shape[1];
+
+        // Mutliplying Two matrices
+
+        for(int i = 0; i < rows1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                for (int k = 0; k < cols1; k++) {
+                    this.data[i][j] += this.data[i][k] * array_in.data[k][j];
+                }
+            }
+        }
     }
 
     //A modifier pour que ça fonctionne à + de dimensions
     public void print(){
         String str ="";
-
         if (this.shape[0] > 1){
             str = str.concat("[");
-
         }
         for (int i = 0; i < this.shape[0]; i++){
             str = str.concat(Arrays.toString(this.data[i]));
@@ -75,7 +86,6 @@ public class Ndarray {
         }
         if (this.shape[0] > 1){
             str =  str.concat("]");
-
         }
 
         System.out.println(str);

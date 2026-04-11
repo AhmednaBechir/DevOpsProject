@@ -63,6 +63,57 @@ abstract public class Numja {
         return new Ndarray(tmp_arr.clone(),size,dimension, shape);
     }
 
+    public static Ndarray add(Ndarray mat1,Ndarray mat2){
+        if (!Arrays.equals(mat1.shape, mat2.shape)){
+            System.out.println("Erreur: Les matrices n'ont pas les mêmes dimensions");
+            return null;
+        }
+        double[][] res = new double[mat1.shape[0]][mat1.shape[1]];
+        int rows = mat1.shape[0];
+        int cols = mat1.shape[1];
+        for (int i = 0; i< rows;i++){
+            for (int j = 0; j < cols ; j++){
+                res[i][j] = mat1.data[i][j] + mat2.data[i][j];
+            }
+        }
+        return new Ndarray(res,mat1.size,mat1.ndim,mat1.shape);
+    }
+
+    public static Ndarray sub(Ndarray mat1,Ndarray mat2){
+        if (!Arrays.equals(mat1.shape, mat2.shape)){
+            System.out.println("Erreur: Les matrices n'ont pas les mêmes dimensions");
+            return null;
+        }
+        double[][] res = new double[mat1.shape[0]][mat1.shape[1]];
+        int rows = mat1.shape[0];
+        int cols = mat1.shape[1];
+        for (int i = 0; i< rows;i++){
+            for (int j = 0; j < cols ; j++){
+                res[i][j] = mat1.data[i][j] - mat2.data[i][j];
+            }
+        }
+        return new Ndarray(res,mat1.size,mat1.ndim,mat1.shape);
+    }
+    public static Ndarray mul(Ndarray mat1, Ndarray mat2){
+
+        int rows1 = mat1.shape[0];
+        int cols1 = mat1.shape[1];
+        int rows2 = mat2.shape[0];
+        int cols2 = mat2.shape[1];
+        double[][] res = new double[rows1][cols2];
+        int[] newshape = {rows1,rows2};
+        int newsize = calcSize(newshape);
+        for(int i = 0; i < rows1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                for (int k = 0; k < cols1; k++) {
+                    res[i][j] += mat1.data[i][k] * mat2.data[k][j];
+                }
+            }
+        }
+        //TODO calculer la bonne dimension
+        return new Ndarray(res,newsize,mat1.ndim,newshape);
+    }
+
 
 
 
