@@ -87,8 +87,8 @@ class NumjaTest {
 		Ndarray array_mul_result_1 = Numja.mul(array_1, array_2);
 		Ndarray array_mul_result_2 = Numja.mul(array_2, array_1);
 
-//		assertEquals(2, array_mul_result_1.shape[0], "Numja mulTest: result1 shape[0]");
-//		assertEquals(2, array_mul_result_1.shape[1], "Numja mulTest: result1 shape[1]");
+		assertEquals(2, array_mul_result_1.shape[0], "Numja mulTest: result1 shape[0]");
+		assertEquals(2, array_mul_result_1.shape[1], "Numja mulTest: result1 shape[1]");
 
 		for (int i = 0; i < array_mul_result_1.shape[0]; i++) {
 			for (int j = 0; j < array_mul_result_1.shape[1]; j++) {
@@ -96,8 +96,8 @@ class NumjaTest {
 			}
 		}
 		
-//		assertEquals(3, array_mul_result_2.shape[0], "Numja mulTest: result2 shape[0]");
-//		assertEquals(3, array_mul_result_2.shape[1], "Numja mulTest: result1 shape[1]");
+		assertEquals(3, array_mul_result_2.shape[0], "Numja mulTest: result2 shape[0]");
+		assertEquals(3, array_mul_result_2.shape[1], "Numja mulTest: result1 shape[1]");
 
 		for (int i = 0; i < array_mul_result_2.shape[0]; i++) {
 			for (int j = 0; j < array_mul_result_2.shape[1]; j++) {
