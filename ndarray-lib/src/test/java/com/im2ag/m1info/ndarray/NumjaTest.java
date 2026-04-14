@@ -97,7 +97,7 @@ class NumjaTest {
 		}
 		
 		assertEquals(3, array_mul_result_2.shape[0], "Numja mulTest: result2 shape[0]");
-		assertEquals(3, array_mul_result_2.shape[1], "Numja mulTest: result1 shape[1]");
+		assertEquals(3, array_mul_result_2.shape[1], "Numja mulTest: result2 shape[1]");
 
 		for (int i = 0; i < array_mul_result_2.shape[0]; i++) {
 			for (int j = 0; j < array_mul_result_2.shape[1]; j++) {
