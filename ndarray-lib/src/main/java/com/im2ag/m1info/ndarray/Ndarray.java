@@ -33,6 +33,7 @@ public class Ndarray {
 
     }
 
+<<<<<<< HEAD
     /**
      * <p>Fonction d'addition equivalente à l'opérateur +=
      * L'opération est faite sur objet appelant la methode
@@ -40,6 +41,36 @@ public class Ndarray {
      * </p>
      * @param array_in La matrice qui sera additionnée
      */
+=======
+    // Met la matrice "à plat"
+    public void ravel() {
+        int[] new_shape = new int[2];
+        new_shape[0] = 1;
+        new_shape[1] = shape[0] * shape[1];
+        double[][] new_data = new double[new_shape[0]][new_shape[1]];
+        for(int i = 0; i < shape[0]; i++) {
+            for(int j = 0; j < shape[1]; j++) {
+                new_data[0][i*shape[1] + j] = data[i][j];
+            }
+        }
+        data = new_data;
+        shape[0] = new_shape[0];
+        shape[1] = new_shape[1];
+    }
+
+    // Change la forme de la matrice
+    public void reshape(int axe1, int axe2) {
+        double[][] new_data = new double[axe1][axe2];
+        for (int i = 0; i < axe1; i++) {
+            for (int j = 0; j < axe2; j++) {
+                new_data[i][j] = data[0][i*axe2 + j];
+            }
+        }
+        shape[0] = axe1;
+        shape[1] = axe2;
+        data = new_data;
+    }
+>>>>>>> 9640ec3 (ajout des fonctions ravel et reshape)
 
     public void add(Ndarray array_in){
         if (!Arrays.equals(this.shape, array_in.shape)){
