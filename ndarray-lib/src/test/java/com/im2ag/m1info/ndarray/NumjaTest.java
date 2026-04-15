@@ -91,7 +91,7 @@ class NumjaTest {
 
 		for (int i = 0; i < array_mul_result_1.shape[0]; i++) {
 			for (int j = 0; j < array_mul_result_1.shape[1]; j++) {
-				assertEquals(expected_result_M2_M1[i][j], array_mul_result_1.data[i][j], "Numja mulTest: data M1 M2");
+				assertEquals(expected_result_M1_M2[i][j], array_mul_result_1.data[i][j], "Numja mulTest: data M1 M2");
 			}
 		}
 		
@@ -100,7 +100,7 @@ class NumjaTest {
 
 		for (int i = 0; i < array_mul_result_2.shape[0]; i++) {
 			for (int j = 0; j < array_mul_result_2.shape[1]; j++) {
-				assertEquals(expected_result_M1_M2[i][j], array_mul_result_2.data[i][j], "Numja mulTest: data M2 M1");
+				assertEquals(expected_result_M2_M1[i][j], array_mul_result_2.data[i][j], "Numja mulTest: data M2 M1");
 			}
 		}
 	}
