@@ -77,17 +77,17 @@ class NumjaTest {
 	public void mulTest() {
 		double[][] M1 = {{1,2}, {3,4}, {5,6}};
 		double[][] M2 = {{1,2,3}, {4,5,6}};
-		
-		double[][] expected_result_M1_M2 = {{22, 28}, {49, 64}};
-		double[][] expected_result_M2_M1 = {{9, 12, 15}, {19, 26, 33}, {29, 40, 51}};
+
+		double[][] expected_result_M1_M2 = {{9, 12, 15}, {19, 26, 33}, {29, 40, 51}};
+		double[][] expected_result_M2_M1 = {{22, 28}, {49, 64}};
 		
 		Ndarray array_1 = Numja.array(M1);
 		Ndarray array_2 = Numja.array(M2);
 		Ndarray array_mul_result_1 = Numja.mul(array_1, array_2);
 		Ndarray array_mul_result_2 = Numja.mul(array_2, array_1);
 
-		assertEquals(2, array_mul_result_1.shape[0], "Numja mulTest: result1 shape[0]");
-		assertEquals(2, array_mul_result_1.shape[1], "Numja mulTest: result1 shape[1]");
+		assertEquals(3, array_mul_result_1.shape[0], "Numja mulTest: result1 shape[0]");
+		assertEquals(3, array_mul_result_1.shape[1], "Numja mulTest: result1 shape[1]");
 
 		for (int i = 0; i < array_mul_result_1.shape[0]; i++) {
 			for (int j = 0; j < array_mul_result_1.shape[1]; j++) {
@@ -95,8 +95,8 @@ class NumjaTest {
 			}
 		}
 		
-		assertEquals(3, array_mul_result_2.shape[0], "Numja mulTest: result2 shape[0]");
-		assertEquals(3, array_mul_result_2.shape[1], "Numja mulTest: result2 shape[1]");
+		assertEquals(2, array_mul_result_2.shape[0], "Numja mulTest: result2 shape[0]");
+		assertEquals(2, array_mul_result_2.shape[1], "Numja mulTest: result2 shape[1]");
 
 		for (int i = 0; i < array_mul_result_2.shape[0]; i++) {
 			for (int j = 0; j < array_mul_result_2.shape[1]; j++) {
