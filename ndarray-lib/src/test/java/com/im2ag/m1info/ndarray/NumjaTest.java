@@ -230,5 +230,11 @@ class NumjaTest {
 		});
 	}
 	
-	
+	@Test
+	public void zeros0dimensionsTest() {
+		int[] dim = {0,0};
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.zeros(dim);
+		});
+	}
 }
