@@ -18,9 +18,10 @@ abstract public class Numja {
         int[] shape = new int[2];
         shape[0] = 1;
         shape[1] = data_in.length;
+        int newsize = calcSize(shape);
         System.arraycopy(data_in, 0, tmp_arr[0], 0, data_in.length);
         //Va falloir que je corrige la ligne en dessous car c'est n'importe quoi avec les dimensions , shapes...
-        return new Ndarray(tmp_arr,data_in.length,tmp_arr.length,shape);
+        return new Ndarray(tmp_arr,newsize,tmp_arr.length,shape);
     }
 
     public static Ndarray array(double[]... data_in){
@@ -29,27 +30,41 @@ abstract public class Numja {
         int[] shape = new int[2];
         shape[0] = data_in.length;
         shape[1] = data_in[0].length;
+        int newsize = calcSize(shape);
         System.arraycopy(data_in, 0, tmp_arr, 0, data_in.length);
         //Va falloir que je corrige la ligne en dessous car c'est n'importe quoi avec les dimensions , shapes...
-        return new Ndarray(tmp_arr,data_in.length,tmp_arr.length,shape);
+        return new Ndarray(tmp_arr,newsize,tmp_arr.length,shape);
     }
 
     // Attention C'est mega nul mon code, J'ai pas encore cherché pour gerer à 2 dimensions.
     public static Ndarray zeros(int[] shape_in){
         int dimension = shape_in.length;
         int size = calcSize(shape_in);
-        double[][] tmp_arr = new double[shape_in[0]][shape_in[1]];
-        for (int i = 0; i < shape_in[0]; i++){
+        int m, n;
+        if (shape_in.length == 1){
+            m = 1;
+            n = shape_in[0];
+        } else if (shape_in.length == 2) {
+            m = shape_in[0];
+            n = shape_in[1];
+        }else{
+            System.out.println("Erreur de dimension: 1D et 2D pris en charge seulement");
+            return  null;
+        }
+
+        double[][] tmp_arr = new double[m][n];
+        for (int i = 0; i < m; i++){
             Arrays.fill(tmp_arr[i],0.0);
         }
 
-        return new Ndarray(tmp_arr.clone(),size,dimension,shape_in);
+        return new Ndarray(tmp_arr.clone(),size,dimension,new int[]{m,n});
     }
     // Attention C'est mega nul mon code, J'ai pas encore cherché pour gerer à 2 dimensions.
     public static Ndarray arange(double start, double end, double step){
         if(end > start && step < 0 || end < start && step > 0 ){
-            System.out.println("Erreur sur les bornes");
-            return new Ndarray(new double[][]{{0.0}},1,1,new int[]{1,1});
+            throw new IllegalArgumentException("Erreur sur les bornes et le pas");
+            //System.out.println("Erreur sur les bornes");
+            //return new Ndarray(new double[][]{{0.0}},1,1,new int[]{1,1});
         }
         int dimension = 1;
 
@@ -65,8 +80,8 @@ abstract public class Numja {
 
     public static Ndarray add(Ndarray mat1,Ndarray mat2){
         if (!Arrays.equals(mat1.shape, mat2.shape)){
-            System.out.println("Erreur: Les matrices n'ont pas les mêmes dimensions");
-            return null;
+            throw new IllegalArgumentException("Erreur: Les matrices n'ont pas les mêmes dimensions");
+
         }
         double[][] res = new double[mat1.shape[0]][mat1.shape[1]];
         int rows = mat1.shape[0];
@@ -81,8 +96,8 @@ abstract public class Numja {
 
     public static Ndarray sub(Ndarray mat1,Ndarray mat2){
         if (!Arrays.equals(mat1.shape, mat2.shape)){
-            System.out.println("Erreur: Les matrices n'ont pas les mêmes dimensions");
-            return null;
+            throw new IllegalArgumentException("Erreur: Les matrices n'ont pas les mêmes dimensions");
+
         }
         double[][] res = new double[mat1.shape[0]][mat1.shape[1]];
         int rows = mat1.shape[0];
@@ -95,13 +110,16 @@ abstract public class Numja {
         return new Ndarray(res,mat1.size,mat1.ndim,mat1.shape);
     }
     public static Ndarray mul(Ndarray mat1, Ndarray mat2){
-
+        if (mat1.shape[0] != mat2.shape[1]){
+            throw new IllegalArgumentException("Erreur: Les matrices n'ont pas les mêmes dimensions");
+        }
         int rows1 = mat1.shape[0];
         int cols1 = mat1.shape[1];
         int rows2 = mat2.shape[0];
         int cols2 = mat2.shape[1];
         double[][] res = new double[rows1][cols2];
-        int[] newshape = {rows1,rows2};
+
+        int[] newshape = {rows1,cols2};
         int newsize = calcSize(newshape);
         for(int i = 0; i < rows1; i++) {
             for (int j = 0; j < cols2; j++) {
