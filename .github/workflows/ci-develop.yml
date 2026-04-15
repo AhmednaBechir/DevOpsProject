@@ -1,16 +1,12 @@
-name: CI
+name: CI Develop
 
 on:
   push:
     branches:
-      - "feature/**"
-  pull_request:
-    branches:
       - develop
-      - main
 
 jobs:
-  build:
+  build-and-coverage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +18,8 @@ jobs:
       - name: Build and Test
         run: mvn verify
         working-directory: ndarray-lib
-      - name: Upload Jacoco report
+      - name: Upload Final Coverage Report
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
+          name: coverage-report-develop
           path: ndarray-lib/target/site/jacoco/
