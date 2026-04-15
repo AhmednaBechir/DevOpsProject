@@ -21,8 +21,8 @@ class NumjaTest {
 		for (int i = 0; i < 2; i++) {
 			assertEquals(shape[i], ndarray_test.shape[i], "Numja initializationTest: shape");
 		}
-		assertEquals(ndarray_test.getSize(), 6, "Numja initializationTest: size");
-		assertEquals(ndarray_test.ndim, 2, "Numja initializationTest: ndim");
+		assertEquals(6, ndarray_test.getSize(), "Numja initializationTest: size");
+		assertEquals(2, ndarray_test.ndim, "Numja initializationTest: ndim");
 		for (int i = 0; i < ndarray_test.shape[0]; i++) {
 			for (int j = 0; j < ndarray_test.shape[1]; j++) {
 				assertEquals(data[i][j], ndarray_test.data[i][j], "Numja initializationTest: data");
