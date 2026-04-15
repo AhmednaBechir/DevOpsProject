@@ -32,11 +32,29 @@ class NumjaTest {
 	
 	@Test
 	public void zerosTest() {
-		int[] shape = {3};
-		Ndarray zeros_test1 = Numja.zeros(shape);
-		assertEquals(1, zeros_test1.ndim, "Numja zerosTest: ndim");
-		assertEquals(3, zeros_test1.shape[0], "Numja zerosTest: nombre lignes");
-		assertEquals(1, zeros_test1.shape[1], "Numja zerosTest: nombre colonnes");
+		int[] shape1 = {3};
+		Ndarray zeros_test = Numja.zeros(shape1);
+		assertEquals(1, zeros_test.ndim, "Numja zerosTest: ndim 1 dimension");
+		assertEquals(1, zeros_test.shape[0], "Numja zerosTest: nombre lignes 1 dimension");
+		assertEquals(3, zeros_test.shape[1], "Numja zerosTest: nombre colonnes 1 dimension");
+		
+		int[] shape2 = {4, 2};
+		zeros_test = Numja.zeros(shape2);
+		assertEquals(2, zeros_test.ndim, "Numja zerosTest: ndim 2 dimensions");
+		assertEquals(4, zeros_test.shape[0], "Numja zerosTest: nombre lignes 2 dimensions");
+		assertEquals(2, zeros_test.shape[1], "Numja zerosTest: nombre colonnes 2 dimensions");
+		
+		
+	}
+	
+	@Test
+	public void arangeTest() {
+		
+	}
+	
+	@Test
+	public void reshapeTest() {
+		
 	}
 	
 	@Test
