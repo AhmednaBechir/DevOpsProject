@@ -3,3 +3,8 @@ target/
 *.class
 .idea/
 .vscode/
+.classpath
+.project
+org.eclipse.*
+jvm.config
+maven.config
