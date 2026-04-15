@@ -140,4 +140,95 @@ class NumjaTest {
 		
 	}
 
+	@Test
+	public void addBadDimensionsTest1() {
+		double[][] M1 = {{1,2,3}};
+		double[][] M2 = {{4,5,6,7}};
+		Ndarray array_1 = Numja.array(M1);
+		Ndarray array_2 = Numja.array(M2);
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.add(array_1, array_2);
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.add(array_2, array_1);
+		});
+	}
+	
+	@Test
+	public void addBadDimensionsTest2() {
+		double[][] M1 = {{1,2,3}, {4,5,6}};
+		double[][] M2 = {{1,2,3}, {4,5,6}, {7,8,9}};
+		Ndarray array_1 = Numja.array(M1);
+		Ndarray array_2 = Numja.array(M2);
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.add(array_1, array_2);
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.add(array_2, array_1);
+		});
+	}
+	
+	@Test
+	public void subBadDimensionsTest1() {
+		double[][] M1 = {{1,2,3}};
+		double[][] M2 = {{4,5,6,7}};
+		Ndarray array_1 = Numja.array(M1);
+		Ndarray array_2 = Numja.array(M2);
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.sub(array_1, array_2);
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.sub(array_2, array_1);
+		});
+	}
+	
+	@Test
+	public void subBadDimensionsTest2() {
+		double[][] M1 = {{1,2,3}, {4,5,6}};
+		double[][] M2 = {{1,2,3}, {4,5,6}, {7,8,9}};
+		Ndarray array_1 = Numja.array(M1);
+		Ndarray array_2 = Numja.array(M2);
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.sub(array_1, array_2);
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.sub(array_2, array_1);
+		});
+	}
+	
+	@Test
+	public void mulBadDimensionsTest1() {
+		double[][] M1 = {{1}, {2}, {3}};
+		double[][] M2 = {{1,2,3,4}, {5,6,7,8}};
+		Ndarray array_1 = Numja.array(M1);
+		Ndarray array_2 = Numja.array(M2);
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.mul(array_1, array_2);
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.mul(array_2, array_1);
+		});
+	}
+	
+	@Test
+	public void mulBadDimensionsTest2() {
+		double[][] M1 = {{1,2,3}};
+		double[][] M2 = {{4,5,6}};
+		Ndarray array_1 = Numja.array(M1);
+		Ndarray array_2 = Numja.array(M2);
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.mul(array_1, array_2);
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.mul(array_2, array_1);
+		});
+	}
+	
+	
 }
