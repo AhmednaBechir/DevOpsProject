@@ -35,8 +35,8 @@ class NumjaTest {
 		int[] shape = {3};
 		Ndarray zeros_test1 = Numja.zeros(shape);
 		assertEquals(1, zeros_test1.ndim, "Numja zerosTest: ndim");
-		assertEquals(3, zeros_test1.shape[0], "Numja zerosTest: shape[0]");
-		assertEquals(1, zeros_test1.shape[1], "Numja zerosTest: shape[1]");
+		assertEquals(3, zeros_test1.shape[0], "Numja zerosTest: nombre lignes");
+		assertEquals(1, zeros_test1.shape[1], "Numja zerosTest: nombre colonnes");
 	}
 	
 	@Test
