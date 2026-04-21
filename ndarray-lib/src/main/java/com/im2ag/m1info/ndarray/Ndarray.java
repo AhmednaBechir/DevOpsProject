@@ -33,16 +33,11 @@ public class Ndarray {
 
     }
 
-<<<<<<< HEAD
     /**
-     * <p>Fonction d'addition equivalente à l'opérateur +=
+     * <p>Fonction pour mettre "à plat" une matrice +=
      * L'opération est faite sur objet appelant la methode
-     * Les matrices doivent avoir la même dimension sinon une exception IncorrectDimension est levée
      * </p>
-     * @param array_in La matrice qui sera additionnée
      */
-=======
-    // Met la matrice "à plat"
     public void ravel() {
         int[] new_shape = new int[2];
         new_shape[0] = 1;
@@ -58,8 +53,18 @@ public class Ndarray {
         shape[1] = new_shape[1];
     }
 
-    // Change la forme de la matrice
+    /**
+     * <p>Fonction pour changer la forme de la matrice +=
+     * L'opération est faite sur objet appelant la methode
+     * Le nombre d'éléments pour la nouvelle forme doit correspondre à celui avant modification
+     * </p>
+     * @param axe1 Nouvelle dimension 1
+     * @param axe2 Nouvelle dimension 2
+     */
     public void reshape(int axe1, int axe2) {
+        if (axe1 * axe2 != shape[0] * shape[1]) {
+            throw new IncorrectDimension("Erreur: Nouvelles dimensions incompatibles avec les anciennes");
+        }
         double[][] new_data = new double[axe1][axe2];
         for (int i = 0; i < axe1; i++) {
             for (int j = 0; j < axe2; j++) {
@@ -70,7 +75,14 @@ public class Ndarray {
         shape[1] = axe2;
         data = new_data;
     }
->>>>>>> 9640ec3 (ajout des fonctions ravel et reshape)
+
+    /**
+     * <p>Fonction d'addition equivalente à l'opérateur +=
+     * L'opération est faite sur objet appelant la methode
+     * Les matrices doivent avoir la même dimension sinon une exception IncorrectDimension est levée
+     * </p>
+     * @param array_in La matrice qui sera additionnée
+     */
 
     public void add(Ndarray array_in){
         if (!Arrays.equals(this.shape, array_in.shape)){
