@@ -130,6 +130,19 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.6.3</version>
         </plugin>
+
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.4.2</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <mainClass>com.im2ag.m1info.ndarray.App</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
+
       </plugins>
     </pluginManagement>
 
