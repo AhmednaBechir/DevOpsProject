@@ -49,12 +49,11 @@ class NumjaTest {
 	
 	@Test
 	public void arangeTest() {
-		
-	}
-	
-	@Test
-	public void reshapeTest() {
-		
+		double[] expected = {1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5};
+		Ndarray array_test = Numja.arange(1, 5, 0.5);
+		for (int i = 0; i < array_test.shape[0]; i++) {
+			assertEquals(expected[i], array_test.data[i], "arangeTest: data");
+		}
 	}
 	
 	@Test
@@ -235,6 +234,17 @@ class NumjaTest {
 		int[] dim = {0,0};
 		assertThrows(IllegalArgumentException.class, () -> {
 			Numja.zeros(dim);
+		});
+	}
+	
+	@Test
+	public void arangeExceptionTest() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.arange(3, 1, 0.5);
+		});
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Numja.arange(1, 3, -0.5);
 		});
 	}
 }
