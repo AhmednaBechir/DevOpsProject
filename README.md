@@ -12,26 +12,29 @@
 
 A Java library for multidimensional array computation, inspired by NumPy.
 
-## Fonctionnalités [bieeeen sur À COMPLÉTER/VÉRIFIER par ls devs]
+## Fonctionnalités
 
 ### Structure de données
-- `Ndarray` : tableau multidimensionnel (1D et 2D(i saw a comment saying "j'ai pas encore cherche a gerer a 2 dimension, does that mean they dont gerent 2 dimension??")) de type `double`
-  - Attributs : `ndim`, `shape`, `size` et `list??`
+- `Ndarray` : Tableau multidimensionnel (1D et 2D) de type `double[][]`
+  - Attributs : `double[][]`, `ndim`, `shape`, `size`
 
 ### Fonctions de création (Numja)
-- `array()` : création depuis un tableau Java
-- `zeros()` : création d'un tableau rempli de zéros
-- `arange()` : création depuis une séquence de nombres
+- `array()` : Création depuis une liste de `double` ou une liste de `double[]` et renvoi un Ndarray
+- `zeros()` : Création d'un tableau rempli de zéros. Prend en paramete un `int[]` de taille 2 contenant les deux dimensions. Renvoi un Ndarray.
+- `arange()` : Création depuis une séquence de nombres. Prend en paramètre trois entier `start`, `end`, `step` pour définier le début, la fin et le pas de la séquence. Renvoi un Ndarray de 1D.
 
 ### Opérations
-- `add()` / `+=` : addition élément par élément
-- `sub()` / `-=` : soustraction élément par élément
-- `mul()` : multiplication matricielle
-- `reshape()` : i don't think i know what this is, i think it just changing the dimensions of a matrice?
-- `ravel()` : same for this idk, but it's maybe like victor said,  its flattening the matrice?
+- `Numja.add(Ndarray mat1, Ndarray mat2)` : Addition élément par élément des matrices mat1 et mat2. Retourne une matrice `mat1+mat2`.
+- `Ndarray.add(Ndarray mat_in)` : Addition élément par élément sur place.
+- `Numja.sub(Ndarray mat1, Ndarray mat2)` : Soustraction élément par élément des matrices mat1 et mat2. Retourne une matrice `mat1-mat2`.
+- `Ndarray.sub(Ndarray mat_in)` : Soustraction élément par élément sur place.
+- `Numja.mul(Ndarray mat1, Ndarray mat2)` : Multiplication élément par élément des matrices mat1 et mat2. Retourne une matrice `mat1*mat2`.
+- `Ndarray.mul(Ndarray mat_in)` : Multiplication élément par élément sur place. Les dimensions de mat1 devienne -> `mat1(m,n)*mat2(n,p) = mat1(m,p)` 
+- `reshape()` : Transformation, si possible, de la forme d'une matrice 2D en une nouvelle matrice 2D de forme différente. Les éléments sont inchangés et aucun élément n'est ajouté ou supprimé.
+- `ravel()` : Transformation d'une matrice 2D en 1D sur place.
 
 ### Affichage
-- `print()` : affichage formaté du tableau
+- `print()` : Fonction qui retourne une `String` représentant l'affichage formaté du tableau
 
 ## Choix d'outils
 
@@ -51,33 +54,37 @@ Outils choisis en plus :
 
 ### Pipelines GitHub Actions
 
-- **CI** (`ci.yml`) : déclenché sur push `feature/**` et PR vers `develop`/`main` — compile et lance les tests unitaires, génère et publie le rapport de couverture Jacoco en artifact
-- **CI Develop** (`ci-develop.yml`) : déclenché sur push vers `develop` — même chose, rapport de couverture considéré comme version de référence
-- **Publish** (`publish.yml`) : déclenché sur push vers `main` — publie le JAR sur GitHub Packages et construit et pousse l'image Docker sur GHCR
-- **Pages** (`pages.yml`) : déclenché sur push vers `main` — génère le site Maven (javadoc, rapports) et le déploie sur GitHub Pages
-- **SonarQube** (`sonar.yml`) : déclenché sur push/PR vers `main`/`develop` — analyse statique du code, résultats visibles sur l'instance UFR
+- **CI** (`ci.yml`) : Déclenché sur push `feature/**` et PR vers `develop`/`main` — compile et lance les tests unitaires, génère et publie le rapport de couverture Jacoco en artifact
+- **CI Develop** (`ci-develop.yml`) : Déclenché sur push vers `develop` — même chose, rapport de couverture considéré comme version de référence
+- **Publish** (`publish.yml`) : Déclenché sur push vers `main` — publie le JAR sur GitHub Packages et construit et pousse l'image Docker sur GHCR
+- **Pages** (`pages.yml`) : Déclenché sur push vers `main` — génère le site Maven (javadoc, rapports) et le déploie sur GitHub Pages
+- **SonarQube** (`sonar.yml`) : Déclenché sur push/PR vers `main`/`develop` — analyse statique du code, résultats visibles sur l'instance UFR
 
 ### Protection de la branche main
-- PR obligatoire avant tout merge
+
+- Pull Request obligatoire avant merge
 - 1 approbation requise
-- Approbations invalidées si nouveaux commits
-- CI doit être vert (status check obligatoire)
-- Les discussions doivent être résolues avant merge
+- Réinitialisation des approbations si nouveaux commits
+- Approbation requise sur le dernier commit (latest push)
+- Review obligatoire des Code Owners 
+- Les status checks doivent passer (CI)
+- La branche doit être à jour avant merge
+- Interdiction de bypass (même pour les admins)
 
 ## Workflow Git
 
 ### Branches
-- `main` : branche stable, releases uniquement
-- `develop` : branche d'intégration
-- `feature/*` : une branche par fonctionnalité, créée depuis `develop`
+- `main` : Branche stable, releases uniquement
+- `develop` : Branche d'intégration
+- `feature/*` : Une branche par fonctionnalité, créée depuis `develop`
 
-### Procédure (MDRRRR this is what we were supposed to have done, but we will have to change it, or i'll talk to the team and see what to do)
+### Procédure
 1. Chaque développeur crée une branche `feature/nom` depuis `develop`
 2. Avant ouverture d'une PR, rebase sur `develop` :
 ```bash
    git fetch origin
    git rebase origin/develop
-   git push 
+   git push --force-with-lease
 ```
 3. PR ouverte sur `develop` → review de code par un autre membre → approbation requise
 4. CI doit passer (build + tests) avant de pouvoir merger
@@ -89,27 +96,47 @@ Outils choisis en plus :
 - Le CI doit être vert (status check obligatoire)
 - Les discussions doivent être résolues avant merge
 
+### Cas particuliers
+
+Les modifications liées à l’Ops (CI/CD, workflows, configuration pom.xml ..etc)
+peuvent être intégrées directement via une Pull Request vers `main`, avec approbation. Le workflow standard (feature → develop → main) ne s'applique que sur les fonctionnalités.
+
 ## Images Docker
 
-- **`ghcr.io/ahmednabechir/devopsproject/ndarray-lib:latest`** : exécute un scénario de démonstration des fonctionnalités de la bibliothèque au lancement du conteneur (guys i don't know if i will keep this, i just put it here caus ele prof insiste sur ca dans le sujet)
+- **`ghcr.io/ahmednabechir/devopsproject/ndarray-lib:latest`** : Exécute un scénario de démonstration des fonctionnalités de la bibliothèque au lancement du conteneur.
 - Dépôt : https://github.com/AhmednaBechir/DevOpsProject/pkgs/container/devopsproject%2Fndarray-lib
 
 ## Tests
 
 ### NumjaTest
-- [bien suur À COMPLÉTER/VÉRIFIER par le testeur, c toi victor]
 - `arrayTest` : création 1D
 - `initializationTest` : création 2D, vérification shape/size/data
 - `zerosTest` : vérification zeros 1D et 2D
-- `arangeTest` : [i don't know]
-- `reshapeTest` : [i don't know]
-- `addTest`, `subTest`, `mulTest` : opérations de base
-- `addBadDimensionsTest`, `subBadDimensionsTest`, `mulBadDimensionsTest` : exceptions sur mauvaises dimensions
+- `arangeTest` : vérification de création de matrices avec un intervalle et un pas défini
+- `addTest*`, `subTest*`, `mulTest*` : opérations de base dans une nouvelle matrice
+- `addBadDimensionsTest*`, `subBadDimensionsTest*`, `mulBadDimensionsTest*` : exceptions sur mauvaises dimensions
 
 ### NdarrayTest
-- [À COMPLÉTER/VÉRIFIER par le testeur, c toujours toi victor]
-- `initializationTest`, `addTest`, `subTest`, `mulTest`, `getSizeTest`
+- `initializationTest` : création 2D, vérification shape/size/data
+- `addTest*`, `subTest*`, `mulTest*` : opérations de base sur place
+- `reshapeTest` : vérification de transformation de matrices 2D en 2D de forme différente
+- `ravelTest` : vérification de transformation de matrices 2D en 1D
+- `getSizeTest`
+
+
+## Travaux en cours
+
+Certaines fonctionnalités ont été commencées mais non finalisées avant la deadline :
+
+- **feature/UsefulMathOp** :
+  - `pow(Ndarray arr, double x)`
+  - `exp(Ndarray arr)`
+  - `sqrt(Ndarray arr)`
+  → opérations mathématiques élément par élément
+
+- **feature/broadcast** :
+  - Implémentation du broadcasting (partiellement fonctionnelle)
 
 ## Feedback
 
-If you guys have feedback it will be added here.
+Pas de feedback.
