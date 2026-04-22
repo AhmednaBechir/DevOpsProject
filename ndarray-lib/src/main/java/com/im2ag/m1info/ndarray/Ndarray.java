@@ -66,6 +66,7 @@ public class Ndarray {
             throw new IncorrectDimension("Erreur: Nouvelles dimensions incompatibles avec les anciennes");
         }
         double[][] new_data = new double[axe1][axe2];
+        this.ravel();
         for (int i = 0; i < axe1; i++) {
             for (int j = 0; j < axe2; j++) {
                 new_data[i][j] = data[0][i*axe2 + j];
