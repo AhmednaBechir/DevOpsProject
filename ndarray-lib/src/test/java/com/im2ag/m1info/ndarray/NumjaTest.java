@@ -232,6 +232,9 @@ class NumjaTest {
 	@Test
 	public void zeros0dimensionsTest() {
 		int[] dim = {0,0};
+		//Normalement ca doit marcher avec {0} et {0,0}
+		// Ca fait donne juste un array vide
+		// donc pas beosin de assertthrows
 		assertThrows(IllegalArgumentException.class, () -> {
 			Numja.zeros(dim);
 		});
