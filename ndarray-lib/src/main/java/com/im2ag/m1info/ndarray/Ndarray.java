@@ -5,13 +5,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Ndarray {
-    List l;
-    double[][] data; // J'ai pas encore cherché pour gerer à 2 dimensions
-    int size;
-    int ndim;
-    int[] shape;
-    String dtype; //Voir faire une enum
 
+    /**
+     * La variable contenant notre matrice
+     */
+    double[][] data; // J'ai pas encore cherché pour gerer à 2 dimensions
+    /**
+     * Le nombre total d'élements dans la matrice
+     */
+    int size;
+    /**
+     * Le nombre de dimensions
+     */
+    int ndim;
+    /**
+     * Les dimensions de la matrice
+     */
+    int[] shape;
 
     public Ndarray(double[][] data_in,int size_in,  int ndim_in, int[] shape_in ) {
 
@@ -23,7 +33,14 @@ public class Ndarray {
 
     }
 
-    // Fonction d'addition equivalente à l'opérateur +=
+    /**
+     * <p>Fonction d'addition equivalente à l'opérateur +=
+     * L'opération est faite sur objet appelant la methode
+     * Les matrices doivent avoir la même dimension sinon une exception IncorrectDimension est levée
+     * </p>
+     * @param array_in La matrice qui sera additionnée
+     */
+
     public void add(Ndarray array_in){
         if (!Arrays.equals(this.shape, array_in.shape)){
             throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
@@ -37,7 +54,14 @@ public class Ndarray {
             }
         }
     }
-    // Fonction d'addition equivalente à l'opérateur -=
+
+    /**
+     * <p>Fonction de soustraction equivalente à l'opérateur -=
+     * L'opération est faite sur objet appelant la methode
+     * Les matrices doivent avoir la même dimension sinon une exception IncorrectDimension est levée
+     * </p>
+     * @param array_in La matrice qui sera soustrée
+     */
     public void sub(Ndarray array_in){
         if (!Arrays.equals(this.shape, array_in.shape)){
             throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
@@ -51,7 +75,15 @@ public class Ndarray {
             }
         }
     }
-    // Fonction de multiplication equivalente à l'opérateur *=
+
+    /**
+     * <p>Fonction de multiplication equivalente à l'opérateur *=
+     * L'opération est faite sur objet appelant la methode
+     * Les matrices doivent avoir la même dimension en m et p sinon une exception IncorrectDimension est levée
+     * Mat1(m,n)*mat2(n,p) = mat1(m,p)
+     * </p>
+     * @param array_in La matrice qui sera multipliée
+     */
     public void mul(Ndarray array_in){
         if (this.shape[0] != array_in.shape[1]){
             throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
@@ -77,25 +109,11 @@ public class Ndarray {
        this.data = res;
     }
 
-
-    /*public void print(){
-        String str ="";
-        if (this.shape[0] > 1){
-            str = str.concat("[");
-        }
-        for (int i = 0; i < this.shape[0]; i++){
-            str = str.concat(Arrays.toString(this.data[i]));
-            if (i < (this.shape[0]-1)){
-                str =  str.concat("\n");
-            }
-        }
-        if (this.shape[0] > 1){
-            str =  str.concat("]");
-        }
-
-        System.out.println(str);
-    }*/
-
+    /**
+     * <p>Fonction qui retourne une chaine de caractère représentant la matrice. Utilisée ensuite pour print
+     * </p>
+     * @return Une String représentant l'affichage de la matrice
+     */
     public String print(){
         String str ="";
         if (this.shape[0] > 1){
@@ -114,11 +132,4 @@ public class Ndarray {
         return (str);
     }
 
-    List getList() {
-        return l;
-    }
-
-    int getSize() {
-        return size;
-    }
 }
