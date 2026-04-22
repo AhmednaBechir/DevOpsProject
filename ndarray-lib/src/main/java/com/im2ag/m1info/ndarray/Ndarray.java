@@ -29,8 +29,8 @@ public class Ndarray {
     // Fonction d'addition equivalente à l'opérateur +=
     public void add(Ndarray array_in){
         if (!Arrays.equals(this.shape, array_in.shape)){
-            System.out.println("Erreur: Les matrices n'ont pas les mêmes dimensions");
-            return;
+            throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
+
         }
         int rows = this.shape[0];
         int cols = this.shape[1];
@@ -43,8 +43,8 @@ public class Ndarray {
     // Fonction d'addition equivalente à l'opérateur -=
     public void sub(Ndarray array_in){
         if (!Arrays.equals(this.shape, array_in.shape)){
-            System.out.println("Erreur: Les matrices n'ont pas les mêmes dimensions");
-            return;
+            throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
+
         }
         int rows = this.shape[0];
         int cols = this.shape[1];
@@ -54,18 +54,15 @@ public class Ndarray {
             }
         }
     }
-    // Fonction de multiplication equivalente à l'opérateur *= MAIS ce n'est peut-être utile de garder cette fonction
+    // Fonction de multiplication equivalente à l'opérateur *=
     public void mul(Ndarray array_in){
         if (!Arrays.equals(this.shape, array_in.shape)){
-            System.out.println("Erreur: Les matrices n'ont pas les mêmes dimensions");
-            return;
+            throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
         }
         int rows1 = this.shape[0];
         int cols1 = this.shape[1];
         int rows2 = array_in.shape[0];
         int cols2 = array_in.shape[1];
-
-        // Mutliplying Two matrices
 
         for(int i = 0; i < rows1; i++) {
             for (int j = 0; j < cols2; j++) {
@@ -76,7 +73,7 @@ public class Ndarray {
         }
     }
 
-    //A modifier pour que ça fonctionne à +2 de dimensions
+
     public void print(){
         String str ="";
         if (this.shape[0] > 1){
