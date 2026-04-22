@@ -150,9 +150,9 @@ class NumjaTest {
 		assertEquals(2, array_mul_result.shape[0], "Numja mulTest2: result nombre lignes");
 		assertEquals(4, array_mul_result.shape[1], "Numja mulTest2: result nombre colonnes");
 		
-		for (int i = 0; i < array_1.shape[0]; i++) {
-			for (int j = 0; j < array_1.shape[1]; j++) {
-				assertEquals(expected_result[i][j], array_1.data[i][j], "Numja mulTest2: data");
+		for (int i = 0; i < array_mul_result.shape[0]; i++) {
+			for (int j = 0; j < array_mul_result.shape[1]; j++) {
+				assertEquals(expected_result[i][j], array_mul_result.data[i][j], "Numja mulTest2: data");
 			}
 		}
 	}
@@ -171,9 +171,9 @@ class NumjaTest {
 		assertEquals(2, array_mul_result.shape[0], "Numja mulTest3: result nombre lignes");
 		assertEquals(4, array_mul_result.shape[1], "Numja mulTest3: result nombre colonnes");
 		
-		for (int i = 0; i < array_1.shape[0]; i++) {
-			for (int j = 0; j < array_1.shape[1]; j++) {
-				assertEquals(expected_result[i][j], array_1.data[i][j], "Numja mulTest3: data");
+		for (int i = 0; i < array_mul_result.shape[0]; i++) {
+			for (int j = 0; j < array_mul_result.shape[1]; j++) {
+				assertEquals(expected_result[i][j], array_mul_result.data[i][j], "Numja mulTest3: data");
 			}
 		}
 	}

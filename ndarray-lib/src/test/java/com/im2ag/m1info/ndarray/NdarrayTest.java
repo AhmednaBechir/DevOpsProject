@@ -97,11 +97,11 @@ class NdarrayTest {
 		Ndarray array_1 = Numja.array(data1);
 		Ndarray array_2 = Numja.array(data2);
 		
-		array_2.mul(array_1);
+		array_1.mul(array_2);
 		
 		for (int i = 0; i < array_1.shape[0]; i++) {
 			for (int j = 0; j < array_1.shape[1]; j++) {
-				assertEquals(expected_result[i][j], array_2.data[i][j], "Ndarray mulTest3");
+				assertEquals(expected_result[i][j], array_1.data[i][j], "Ndarray mulTest3");
 			}
 		}
 	}

@@ -30,8 +30,8 @@ A Java library for multidimensional array computation, inspired by NumPy.
 - `Ndarray.sub(Ndarray mat_in)` : Soustraction élément par élément sur place.
 - `Numja.mul(Ndarray mat1, Ndarray mat2)` : Multiplication élément par élément des matrices mat1 et mat2. Retourne une matrice `mat1*mat2`.
 - `Ndarray.mul(Ndarray mat_in)` : Multiplication élément par élément sur place. Les dimensions de mat1 devienne -> `mat1(m,n)*mat2(n,p) = mat1(m,p)` 
-- `reshape()` : i don't think i know what this is, i think it just changing the dimensions of a matrice?
-- `ravel()` : same for this idk, but it's maybe like victor said,  its flattening the matrice?
+- `reshape()` : Transformation, si possible, de la forme d'une matrice 2D en une nouvelle matrice 2D de forme différente. Les éléments sont inchangés et aucun élément n'est ajouté ou supprimé.
+- `ravel()` : Transformation d'une matrice 2D en 1D sur place.
 
 ### Affichage
 - `print()` : Fonctoin qui retourne une `String` représentant l'affichage formaté du tableau
@@ -100,18 +100,19 @@ Outils choisis en plus :
 ## Tests
 
 ### NumjaTest
-- [bien suur À COMPLÉTER/VÉRIFIER par le testeur, c toi victor]
 - `arrayTest` : création 1D
 - `initializationTest` : création 2D, vérification shape/size/data
 - `zerosTest` : vérification zeros 1D et 2D
-- `arangeTest` : [i don't know]
-- `reshapeTest` : [i don't know]
-- `addTest`, `subTest`, `mulTest` : opérations de base
-- `addBadDimensionsTest`, `subBadDimensionsTest`, `mulBadDimensionsTest` : exceptions sur mauvaises dimensions
+- `arangeTest` : vérification de création de matrices avec un intervalle et un pas défini
+- `addTest*`, `subTest*`, `mulTest*` : opérations de base dans une nouvelle matrice
+- `addBadDimensionsTest*`, `subBadDimensionsTest*`, `mulBadDimensionsTest*` : exceptions sur mauvaises dimensions
 
 ### NdarrayTest
-- [À COMPLÉTER/VÉRIFIER par le testeur, c toujours toi victor]
-- `initializationTest`, `addTest`, `subTest`, `mulTest`, `getSizeTest`
+- `initializationTest` : création 2D, vérification shape/size/data
+- `addTest*`, `subTest*`, `mulTest*` : opérations de base sur place
+- `reshapeTest` : vérification de transformation de matrices 2D en 2D de forme différente
+- `ravelTest` : vérification de transformation de matrices 2D en 1D
+- `getSizeTest`
 
 ## Feedback
 
