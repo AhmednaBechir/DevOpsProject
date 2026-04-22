@@ -34,6 +34,50 @@ public class Ndarray {
     }
 
     /**
+     * <p>Fonction pour mettre "à plat" une matrice +=
+     * L'opération est faite sur objet appelant la methode
+     * </p>
+     */
+    public void ravel() {
+        int[] new_shape = new int[2];
+        new_shape[0] = 1;
+        new_shape[1] = shape[0] * shape[1];
+        double[][] new_data = new double[new_shape[0]][new_shape[1]];
+        for(int i = 0; i < shape[0]; i++) {
+            for(int j = 0; j < shape[1]; j++) {
+                new_data[0][i*shape[1] + j] = data[i][j];
+            }
+        }
+        data = new_data;
+        shape[0] = new_shape[0];
+        shape[1] = new_shape[1];
+    }
+
+    /**
+     * <p>Fonction pour changer la forme de la matrice +=
+     * L'opération est faite sur objet appelant la methode
+     * Le nombre d'éléments pour la nouvelle forme doit correspondre à celui avant modification
+     * </p>
+     * @param axe1 Nouvelle dimension 1
+     * @param axe2 Nouvelle dimension 2
+     */
+    public void reshape(int axe1, int axe2) {
+        if (axe1 * axe2 != shape[0] * shape[1]) {
+            throw new IncorrectDimension("Erreur: Nouvelles dimensions incompatibles avec les anciennes");
+        }
+        double[][] new_data = new double[axe1][axe2];
+        this.ravel();
+        for (int i = 0; i < axe1; i++) {
+            for (int j = 0; j < axe2; j++) {
+                new_data[i][j] = data[0][i*axe2 + j];
+            }
+        }
+        shape[0] = axe1;
+        shape[1] = axe2;
+        data = new_data;
+    }
+
+    /**
      * <p>Fonction d'addition equivalente à l'opérateur +=
      * L'opération est faite sur objet appelant la methode
      * Les matrices doivent avoir la même dimension sinon une exception IncorrectDimension est levée

@@ -25,6 +25,7 @@ public class App {
         System.out.println("Matrice 5 :");
         System.out.println(myarr5.print());
         Ndarray myarr10 = Numja.zeros(new int[]{10,1});
+<<<<<<< feature/basics
         System.out.println("Matrice zeros 10*1 :");
         System.out.println(myarr10.print());
         
@@ -49,5 +50,22 @@ public class App {
         
         System.out.println("Numja3 * Numja4 =");
         System.out.println(numja_mul.print());
+=======
+        myarr10.print();
+        myarr2.add(myarr1);
+        myarr2.print();
+        myarr2.add(myarr4);
+        myarr2.print();
+        myarr2.sub(Numja.array(10.0,10.0,10.0,10.0,10.0));
+        myarr2.print();
+
+
+        System.out.println("Hello World!");
+        myarr5.print();
+        myarr5.ravel();
+        myarr5.print();
+        myarr5.reshape(5, 2);
+        myarr5.print();
+>>>>>>> develop
     }
 }
