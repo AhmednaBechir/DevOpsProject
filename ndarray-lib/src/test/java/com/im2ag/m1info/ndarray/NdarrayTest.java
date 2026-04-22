@@ -176,6 +176,147 @@ class NdarrayTest {
 	}
 	
 	@Test
+	public void reshapeTest1() {
+		double[][] data1 = {{1,2}, {3,4}, {5,6}};
+		double[][] expected1 = {{1,2,3}, {4,5,6}};
+		
+		Ndarray array_test = Numja.array(data1);
+		
+		array_test.reshape(2, 3);
+		
+		assertEquals(2, array_test.shape[0], "Ndarray reshapeTest1: array_test nb rows 1");
+		assertEquals(3, array_test.shape[1], "Ndarray reshapeTest1: array_test nb cols 1");
+
+		for (int i = 0; i < array_test.shape[0]; i++) {
+			for (int j = 0; j < array_test.shape[1]; j++) {
+				assertEquals(expected1[i][j], array_test.data[i][j], "Ndarray reshapeTest: data 1");
+			}
+		}
+		
+		array_test.reshape(3, 2);
+		
+		assertEquals(3, array_test.shape[0], "Ndarray reshapeTest1: array_test nb rows 2");
+		assertEquals(2, array_test.shape[1], "Ndarray reshapeTest1: array_test nb cols 2");
+		
+		for (int i = 0; i < array_test.shape[0]; i++) {
+			for (int j = 0; j < array_test.shape[1]; j++) {
+				assertEquals(data1[i][j], array_test.data[i][j], "Ndarray reshapeTest: back to initial data");
+			}
+		}
+	}
+	
+	@Test
+	public void reshapeTest2() {
+		double[][] data2 = {{1,2,3}, {4,5,6}};
+		double[][] expected2 = {{1,2,3,4,5,6}};
+		
+		Ndarray array_test = Numja.array(data2);
+		
+		array_test.reshape(1,  6);
+		
+		assertEquals(1, array_test.shape[0], "Ndarray reshapeTest2: array_test nb rows 1");
+		assertEquals(6, array_test.shape[1], "Ndarray reshapeTest2: array_test nb cols 1");
+		
+		for (int i = 0; i < array_test.shape[0]; i++) {
+			for (int j = 0; j < array_test.shape[1]; j++) {
+				assertEquals(expected2[i][j], array_test.data[i][j], "Ndarray reshapeTest2: data 1");
+			}
+		}
+		
+		array_test.reshape(2, 3);
+		
+		assertEquals(2, array_test.shape[0], "Ndarray reshapeTest2: array_test nb rows 2");
+		assertEquals(3, array_test.shape[1], "Ndarray reshapeTest2: array_test nb cols 2");
+		
+		for (int i = 0; i < array_test.shape[0]; i++) {
+			for (int j = 0; j < array_test.shape[1]; j++) {
+				assertEquals(data2[i][j], array_test.data[i][j], "Ndarray reshapeTest3: back to initial data");
+			}
+		}
+	}
+	
+	
+	@Test
+	public void reshapeTest3() {	
+		double[][] data3 = {{1,2,3,4,5,6}};
+		double[][] expected3 = {{1},{2},{3},{4},{5},{6}};
+		
+		Ndarray array_test = Numja.array(data3);
+		
+		array_test.reshape(6, 1);
+		
+		assertEquals(6, array_test.shape[0], "Ndarray reshapeTest3: array_test nb rows 1");
+		assertEquals(1, array_test.shape[1], "Ndarray reshapeTest3: array_test nb cols 1");
+		
+		for (int i = 0; i < array_test.shape[0]; i++) {
+			for (int j = 0; j < array_test.shape[1]; j++) {
+				assertEquals(expected3[i][j], array_test.data[i][j], "Ndarray reshapeTest3: data 1");
+			}
+		}
+		
+		array_test.reshape(1, 6);
+		
+		assertEquals(1, array_test.shape[0], "Ndarray reshapeTest3: array_test nb rows 2");
+		assertEquals(6, array_test.shape[1], "Ndarray reshapeTest3: array_test nb cols 2");
+		
+		for (int i = 0; i < array_test.shape[0]; i++) {
+			for (int j = 0; j < array_test.shape[1]; j++) {
+				assertEquals(data3[i][j], array_test.data[i][j], "Ndarray reshapeTest3: back to initial data");
+			}
+		}
+	}
+ 	
+	@Test
+	public void ravelTest1() {
+		double[][] data1 = {{1,2}, {3,4}, {5,6}};
+		double[] expected1 = {1,2,3,4,5,6};
+		
+		Ndarray array_test = Numja.array(data1);
+		
+		array_test.ravel();
+		
+		assertEquals(1, array_test.shape[0], "Ndarray ravelTest1: array_test nb rows");
+		assertEquals(6, array_test.shape[1], "Ndarray ravelTest1: array_test nb cols");
+		
+		for (int i = 0; i < array_test.shape[1]; i++) {
+			assertEquals(expected1[i], array_test.data[0][i], "Ndarray ravelTest1: data");
+		}
+	}
+	
+	@Test
+	public void ravelTest2() {
+		double[][] data2 = {{1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}};
+		double[] expected2 = {1,2,3,4,5,6,7,8};
+		
+		Ndarray array_test = Numja.array(data2);
+		
+		array_test.ravel();
+		
+		assertEquals(1, array_test.shape[0], "Ndarray ravelTest2: array_test nb rows");
+		assertEquals(8, array_test.shape[1], "Ndarray ravelTest2: array_test nb cols");
+		
+		for (int i = 0; i < array_test.shape[1]; i++) {
+			assertEquals(expected2[i], array_test.data[0][i], "Ndarray ravelTest2: data");
+		}
+	}
+	
+	@Test
+	public void ravelTest3() {
+		double[][] data3 = {{1,2,3,4,5,6,7,8,9}};
+		
+		Ndarray array_test = Numja.array(data3);
+		
+		array_test.ravel();
+		
+		assertEquals(1, array_test.shape[0], "Ndarray ravelTest3: array_test nb rows");
+		assertEquals(9, array_test.shape[1], "Ndarray ravelTest3: array_test nb cols");
+		
+		for (int i = 0; i < array_test.shape[1]; i++) {
+			assertEquals(data3[0][i], array_test.data[0][i], "Ndarray ravelTest3: data");
+		}
+	}
+	
+	@Test
 	public void addExceptionTest1() {
 		double[][] data1 = {{1,2,3}, {4,5,6}};
 		double[][] data2 = {{1,2}, {3,4}, {5,6}};
@@ -281,6 +422,46 @@ class NdarrayTest {
 		assertThrows(IncorrectDimension.class, () -> {
 			array_2.mul(array_1);
 		}, "Ndarray mulExceptionTest1: incompatible dimensions 2");
+	}
+	
+	@Test
+	public void reshapeExceptionTest1() {
+		double[][] data = {{2,2}};
+		Ndarray array_test = Numja.array(data);
+		assertThrows(IncorrectDimension.class, () -> {
+			array_test.reshape(3,3);
+		}, "Ndarray reshapeExceptionTest1: incorrect 1 dimension");
+	}
+	
+	
+	@Test
+	public void reshapeExceptionTest2() {
+		double[][] data = {{1,2,3,4},{5,6,7,8}};
+		Ndarray array_test = Numja.array(data);
+		assertThrows(IncorrectDimension.class, () -> {
+			array_test.reshape(2,2);
+		}, "Ndarray reshapeExceptionTest2: incorrect 2 dimensions case 1");
+		assertThrows(IncorrectDimension.class, () -> {
+			array_test.reshape(4,4);
+		}, "Ndarray reshapeExceptionTest2: incorrect 2 dimensions case 2");
+	}
+	
+	@Test
+	public void reshapeExceptionTest3() {
+		double[][] data = {{}};
+		Ndarray array_test = Numja.array(data);
+		assertThrows(IncorrectDimension.class, () -> {
+			array_test.reshape(3,2);
+		}, "Ndarray reshapeExceptionTest3: no element");
+	}
+	
+	@Test
+	public void reshapeExceptionTest4() {
+		double[][] data = {{3}};
+		Ndarray array_test = Numja.array(data);
+		assertThrows(IncorrectDimension.class, () -> {
+			array_test.reshape(2,3);
+		}, "Ndarray reshapeExceptionTest4: single element");
 	}
 	
 }
