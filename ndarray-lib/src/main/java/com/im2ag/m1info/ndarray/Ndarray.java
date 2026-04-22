@@ -132,4 +132,8 @@ public class Ndarray {
         return (str);
     }
 
+    int getSize() {
+        return size;
+    }
+
 }
