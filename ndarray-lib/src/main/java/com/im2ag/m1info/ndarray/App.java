@@ -17,7 +17,9 @@ public class App {
         Ndarray myarr4 = Numja.arange(30.0,10.0,-5.0);
         myarr4.print();
 
-        Ndarray myarr10 = Numja.zeros(new int[]{10});
+        Ndarray myarr5 = Numja.array(new double [][]{{1.0,2.0,3.0,4.0},{5.0,6.0,7.0,8.0,9.0}});
+        myarr5.print();
+        Ndarray myarr10 = Numja.zeros(new int[]{10,1});
         myarr10.print();
         myarr2.add(myarr1);
         myarr2.print();
