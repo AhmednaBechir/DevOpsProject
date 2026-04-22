@@ -105,7 +105,7 @@ class NumjaTest {
 	}
 	
 	@Test
-	public void mulTest() {
+	public void mulTest1() {
 		double[][] M1 = {{1,2}, {3,4}, {5,6}};
 		double[][] M2 = {{1,2,3}, {4,5,6}};
 
@@ -137,6 +137,48 @@ class NumjaTest {
 	}
 	
 	@Test
+	public void mulTest2() {
+		double[][] data1 = {{1,2,3}, {4,5,6}};
+		double[][] data2 = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
+		double[][] expected_result = {{38, 44, 50, 56}, {83, 98, 113, 128}};
+		
+		Ndarray array_1 = Numja.array(data1);
+		Ndarray array_2 = Numja.array(data2);
+		
+		Ndarray array_mul_result = Numja.mul(array_1, array_2);
+		
+		assertEquals(2, array_mul_result.shape[0], "Numja mulTest2: result nombre lignes");
+		assertEquals(4, array_mul_result.shape[1], "Numja mulTest2: result nombre colonnes");
+		
+		for (int i = 0; i < array_1.shape[0]; i++) {
+			for (int j = 0; j < array_1.shape[1]; j++) {
+				assertEquals(expected_result[i][j], array_1.data[i][j], "Numja mulTest2: data");
+			}
+		}
+	}
+	
+	@Test
+	public void mulTest3() {
+		double[][] data1 = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
+		double[][] data2 = {{1,2,3}, {4,5,6}};
+		double[][] expected_result = {{38, 44, 50, 56}, {83, 98, 113, 128}};
+		
+		Ndarray array_1 = Numja.array(data1);
+		Ndarray array_2 = Numja.array(data2);
+		
+		Ndarray array_mul_result = Numja.mul(array_2, array_1);
+		
+		assertEquals(2, array_mul_result.shape[0], "Numja mulTest3: result nombre lignes");
+		assertEquals(4, array_mul_result.shape[1], "Numja mulTest3: result nombre colonnes");
+		
+		for (int i = 0; i < array_1.shape[0]; i++) {
+			for (int j = 0; j < array_1.shape[1]; j++) {
+				assertEquals(expected_result[i][j], array_1.data[i][j], "Numja mulTest3: data");
+			}
+		}
+	}
+	
+	@Test
 	public void getSizeTest() {
 		double[] data1 = {0,1,2};
 		Ndarray ndarray_test = Numja.array(data1);
@@ -162,10 +204,10 @@ class NumjaTest {
 		
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.add(array_1, array_2);
-		});
+		}, "Numja addBadDimensionsTest1: case M1 + M2");
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.add(array_2, array_1);
-		});
+		}, "Numja addBadDimensionsTest1: case M2 + M1");
 	}
 	
 	@Test
@@ -177,10 +219,10 @@ class NumjaTest {
 		
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.add(array_1, array_2);
-		});
+		}, "Numja addBadDimensionsTest2: case M1 + M2");
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.add(array_2, array_1);
-		});
+		}, "Numja addBadDimensionsTest2: case M2 + M1");
 	}
 	
 	@Test
@@ -192,10 +234,10 @@ class NumjaTest {
 		
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.sub(array_1, array_2);
-		});
+		}, "Numja subBadDimensionsTest1: case M1 - M2");
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.sub(array_2, array_1);
-		});
+		}, "Numja subBadDimensionsTest1: case M2 - M1");
 	}
 	
 	@Test
@@ -207,10 +249,10 @@ class NumjaTest {
 		
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.sub(array_1, array_2);
-		});
+		}, "Numja subBadDimensionsTest2: case M1 - M2");
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.sub(array_2, array_1);
-		});
+		}, "Numja subBadDimensionsTest2: case M2 - M1");
 	}
 	
 	@Test
@@ -222,10 +264,10 @@ class NumjaTest {
 		
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.mul(array_1, array_2);
-		});
+		}, "Numja mulBadDimensionsTest1: case M1 * M2");
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.mul(array_2, array_1);
-		});
+		}, "Numja subBadDimensionsTest1: case M2 * M1");
 	}
 	
 	@Test
@@ -237,20 +279,34 @@ class NumjaTest {
 		
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.mul(array_1, array_2);
-		});
+		}, "Numja mulBadDimensionsTest2: case M1 * M2");
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.mul(array_2, array_1);
-		});
+		}, "Numja mulBadDimensionsTest2: case M2 * M1");
+	}
+	
+	@Test
+	public void mulBadDimensionsTest3() {
+		double[][] M1 = {{1,2,3}, {4,5,6}};
+		double[][] M2 = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
+		
+
+		Ndarray array_1 = Numja.array(M1);
+		Ndarray array_2 = Numja.array(M2);
+		
+		assertThrows(IncorrectDimension.class, () -> {
+			Numja.mul(array_2, array_1);
+		}, "Numja mulBadDimensionsTest3: case M2 * M1");
 	}
 	
 	@Test
 	public void arangeExceptionTest() {
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.arange(3, 1, 0.5);
-		});
+		}, "Numja arangeExceptionTest: ascending order");
 		
 		assertThrows(IncorrectDimension.class, () -> {
 			Numja.arange(1, 3, -0.5);
-		});
+		}, "Numja arangeExceptionTest: descending order");
 	}
 }
