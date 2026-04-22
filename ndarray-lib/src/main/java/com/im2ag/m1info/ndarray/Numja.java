@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 abstract public class Numja {
 
-    private static int calcSize(int[] shape_in){
+    public static int calcSize(int[] shape_in){
         int size = 1;
         for (int j : shape_in) {
             size *= j;
