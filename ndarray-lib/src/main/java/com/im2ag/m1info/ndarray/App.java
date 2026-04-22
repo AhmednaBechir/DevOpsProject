@@ -33,7 +33,7 @@ public class App {
         myarr5.print();
         myarr5.ravel();
         myarr5.print();
-        myarr5.reshape(4, 2);
+        myarr5.reshape(5, 2);
         myarr5.print();
     }
 }
