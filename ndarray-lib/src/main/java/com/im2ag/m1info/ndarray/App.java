@@ -17,8 +17,8 @@ public class App {
         // Ndarray myarr4 = Numja.arange(30.0,10.0,-5.0);
         // myarr4.print();
 
-        // Ndarray myarr5 = Numja.array(new double [][]{{1.0,2.0,3.0,4.0},{5.0,6.0,7.0,8.0,9.0}});
-        // myarr5.print();
+        Ndarray myarr5 = Numja.array(new double [][]{{1.0,2.0,3.0,4.0},{5.0,6.0,7.0,8.0}, {10.0,5.0,2.0,8.0}});
+        myarr5.print();
         // Ndarray myarr10 = Numja.zeros(new int[]{10,1});
         // myarr10.print();
         // myarr2.add(myarr1);
@@ -27,10 +27,20 @@ public class App {
         // myarr2.print();
         // myarr2.sub(Numja.array(10.0,10.0,10.0,10.0,10.0));
         // myarr2.print();
-
-        Ndarray arr1 = Numja.array(0.0,1.0,2.0);
+        System.out.println();
+        Ndarray arr1 = Numja.array(0.0,1.0,2.0,3.0);
         arr1.print();
-        Ndarray arr2  = Numja.stretch(arr1, 1, 5);
-        arr2.print();
+        Ndarray res = Numja.add(myarr5, arr1);
+        System.out.println();
+        res.print();
+
+        System.out.println();
+        arr1 = Numja.array(new double [][]{{1.0},{2.0},{3.0}});
+        arr1.print();
+        res = Numja.add(myarr5, arr1);
+        System.out.println();
+        res.print();
+        // Ndarray arr2  = Numja.stretch(arr1, 1, 5);
+        // arr2.print();
     }
 }

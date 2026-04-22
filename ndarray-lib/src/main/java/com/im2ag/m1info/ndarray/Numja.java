@@ -78,9 +78,17 @@ abstract public class Numja {
         return new Ndarray(tmp_arr.clone(),size,dimension, shape);
     }
 
-    public static Ndarray add(Ndarray mat1,Ndarray mat2){
-        if (!Arrays.equals(mat1.shape, mat2.shape)){
+    public static Ndarray add(Ndarray arr1,Ndarray arr2){
+        Ndarray mat1 = stretchIfNecessary(arr1, arr2);
+        Ndarray mat2 = stretchIfNecessary(arr2, arr1);
+        if (mat1 == null && mat2 == null){
             throw new IllegalArgumentException("Erreur: Les matrices n'ont pas les mêmes dimensions");
+        }
+        if (mat1 == null) {
+            mat1 = arr1;
+        }
+        if (mat2 == null) {
+            mat2 = arr2;
         }
         double[][] res = new double[mat1.shape[0]][mat1.shape[1]];
         int rows = mat1.shape[0];
@@ -129,6 +137,19 @@ abstract public class Numja {
         }
         //TODO calculer la bonne dimension
         return new Ndarray(res,newsize,mat1.ndim,newshape);
+    }
+
+    private static Ndarray stretchIfNecessary(Ndarray arr1, Ndarray arr2) {
+        Ndarray new_arr = null;
+        if (arr1.shape[0] != arr2.shape[0]) {
+            if (arr1.shape[0] == 1)
+                new_arr = stretch(arr1, 1, arr2.shape[0]);
+        }
+        else if (arr2.shape[1] != arr2.shape[1]) {
+            if (arr1.shape[1] == 1)
+                new_arr = stretch(arr1, 2, arr2.shape[1]);
+        }
+        return new_arr;
     }
 
     // Stretch the array arr on dimension dim with a coefficient val
