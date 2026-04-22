@@ -81,7 +81,6 @@ abstract public class Numja {
     public static Ndarray add(Ndarray mat1,Ndarray mat2){
         if (!Arrays.equals(mat1.shape, mat2.shape)){
             throw new IllegalArgumentException("Erreur: Les matrices n'ont pas les mêmes dimensions");
-
         }
         double[][] res = new double[mat1.shape[0]][mat1.shape[1]];
         int rows = mat1.shape[0];
@@ -132,7 +131,26 @@ abstract public class Numja {
         return new Ndarray(res,newsize,mat1.ndim,newshape);
     }
 
+    // Stretch the array arr on dimension dim with a coefficient val
+    public static Ndarray stretch(Ndarray arr, int dim, int val) {
+        int[] shape = arr.shape.clone();
+        shape[dim-1] = val;
+        Ndarray new_arr = new Ndarray(new double[shape[0]][shape[1]], arr.size*val, arr.ndim, shape);
 
-
-
+        for (int i = 0; i < val; i ++) {
+            if (dim == 1) {
+                for (int j = 0; j < arr.shape[1]; j++) {
+                    //System.out.println("i = " + i + " j = " + j);
+                    new_arr.data[i][j] = arr.data[0][j];
+                }
+            }
+            else {
+                for (int j = 0; j < arr.shape[0]; j++) {
+                    //System.out.println("i = " + i + " j = " + j);
+                    new_arr.data[j][i] = arr.data[j][0];
+                }
+            }
+        }
+        return new_arr;
+    } 
 }
