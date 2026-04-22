@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.im2ag.m1info.ndarray</groupId>
   <artifactId>ndarray-lib</artifactId>
-  <version>1.0</version>
+  <version>1.0-SNAPSHOT</version>
 
   <name>ndarray-lib</name>
   <!-- FIXME change it to the project's website -->
@@ -14,6 +15,11 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
+    
+    <sonar.projectKey>m1-devops-devopsproject</sonar.projectKey>
+    <sonar.projectName>m1-devops-devopsproject</sonar.projectName>
+    <sonar.host.url>https://im2ag-sonar.univ-grenoble-alpes.fr</sonar.host.url>
+    <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
   </properties>
 
   <dependencyManagement>
@@ -48,6 +54,33 @@
     </dependency>
 
   </dependencies>
+
+
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/AhmednaBechir/DevOpsProject</url>
+    </repository>
+  </distributionManagement>
+
+  
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.6.3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.12</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
+
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -91,6 +124,30 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.6.1</version>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.12.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.6.3</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.4.2</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <mainClass>com.im2ag.m1info.ndarray.App</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
+
       </plugins>
     </pluginManagement>
 
