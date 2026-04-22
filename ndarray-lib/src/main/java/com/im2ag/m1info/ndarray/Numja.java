@@ -169,7 +169,7 @@ abstract public class Numja {
      * @return Une matrice Ndarray qui est le résultat de mat1 * mat2
      */
     public static Ndarray mul(Ndarray mat1, Ndarray mat2){
-        if (mat1.shape[0] != mat2.shape[1]){
+        if (mat1.shape[1] != mat2.shape[0]){
             throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
         }
         int rows1 = mat1.shape[0];
@@ -182,7 +182,7 @@ abstract public class Numja {
         int newsize = calcSize(newshape);
         for(int i = 0; i < rows1; i++) {
             for (int j = 0; j < cols2; j++) {
-                for (int k = 0; k < cols1; k++) {
+                for (int k = 0; k < rows2; k++) {
                     res[i][j] += mat1.data[i][k] * mat2.data[k][j];
                 }
             }

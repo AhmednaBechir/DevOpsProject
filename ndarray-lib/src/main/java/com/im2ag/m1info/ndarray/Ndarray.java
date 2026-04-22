@@ -80,12 +80,12 @@ public class Ndarray {
      * <p>Fonction de multiplication equivalente à l'opérateur *=
      * L'opération est faite sur objet appelant la methode
      * Les matrices doivent avoir la même dimension en m et p sinon une exception IncorrectDimension est levée
-     * Mat1(m,n)*mat2(n,p) = mat1(m,p)
+     * mat1(m,n)*mat2(n,p) = mat1(m,p)
      * </p>
      * @param array_in La matrice qui sera multipliée
      */
     public void mul(Ndarray array_in){
-        if (this.shape[0] != array_in.shape[1]){
+        if (this.shape[1] != array_in.shape[0]){
             throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
         }
         int rows1 = this.shape[0];
@@ -98,7 +98,7 @@ public class Ndarray {
         int newsize = Numja.calcSize(newshape);
         for(int i = 0; i < rows1; i++) {
             for (int j = 0; j < cols2; j++) {
-                for (int k = 0; k < cols1; k++) {
+                for (int k = 0; k < rows2; k++) {
                     res[i][j] += this.data[i][k] * array_in.data[k][j];
                 }
             }
@@ -106,7 +106,7 @@ public class Ndarray {
         //TODO calculer la bonne dimension
         this.shape = newshape;
         this.size = newsize;
-       this.data = res;
+        this.data = res;
     }
 
     /**
