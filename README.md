@@ -54,11 +54,11 @@ Outils choisis en plus :
 
 ### Pipelines GitHub Actions
 
-- **CI** (`ci.yml`) : déclenché sur push `feature/**` et PR vers `develop`/`main` — compile et lance les tests unitaires, génère et publie le rapport de couverture Jacoco en artifact
-- **CI Develop** (`ci-develop.yml`) : déclenché sur push vers `develop` — même chose, rapport de couverture considéré comme version de référence
-- **Publish** (`publish.yml`) : déclenché sur push vers `main` — publie le JAR sur GitHub Packages et construit et pousse l'image Docker sur GHCR
-- **Pages** (`pages.yml`) : déclenché sur push vers `main` — génère le site Maven (javadoc, rapports) et le déploie sur GitHub Pages
-- **SonarQube** (`sonar.yml`) : déclenché sur push/PR vers `main`/`develop` — analyse statique du code, résultats visibles sur l'instance UFR
+- **CI** (`ci.yml`) : Déclenché sur push `feature/**` et PR vers `develop`/`main` — compile et lance les tests unitaires, génère et publie le rapport de couverture Jacoco en artifact
+- **CI Develop** (`ci-develop.yml`) : Déclenché sur push vers `develop` — même chose, rapport de couverture considéré comme version de référence
+- **Publish** (`publish.yml`) : Déclenché sur push vers `main` — publie le JAR sur GitHub Packages et construit et pousse l'image Docker sur GHCR
+- **Pages** (`pages.yml`) : Déclenché sur push vers `main` — génère le site Maven (javadoc, rapports) et le déploie sur GitHub Pages
+- **SonarQube** (`sonar.yml`) : Déclenché sur push/PR vers `main`/`develop` — analyse statique du code, résultats visibles sur l'instance UFR
 
 ### Protection de la branche main
 - PR obligatoire avant tout merge
@@ -70,9 +70,9 @@ Outils choisis en plus :
 ## Workflow Git
 
 ### Branches
-- `main` : branche stable, releases uniquement
-- `develop` : branche d'intégration
-- `feature/*` : une branche par fonctionnalité, créée depuis `develop`
+- `main` : Branche stable, releases uniquement
+- `develop` : Branche d'intégration
+- `feature/*` : Une branche par fonctionnalité, créée depuis `develop`
 
 ### Procédure
 1. Chaque développeur crée une branche `feature/nom` depuis `develop`
@@ -94,7 +94,7 @@ Outils choisis en plus :
 
 ## Images Docker
 
-- **`ghcr.io/ahmednabechir/devopsproject/ndarray-lib:latest`** : exécute un scénario de démonstration des fonctionnalités de la bibliothèque au lancement du conteneur (guys i don't know if i will keep this, i just put it here caus ele prof insiste sur ca dans le sujet)
+- **`ghcr.io/ahmednabechir/devopsproject/ndarray-lib:latest`** : Exécute un scénario de démonstration des fonctionnalités de la bibliothèque au lancement du conteneur.
 - Dépôt : https://github.com/AhmednaBechir/DevOpsProject/pkgs/container/devopsproject%2Fndarray-lib
 
 ## Tests
