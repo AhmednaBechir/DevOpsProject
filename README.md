@@ -12,7 +12,7 @@
 
 A Java library for multidimensional array computation, inspired by NumPy.
 
-## Fonctionnalités [bieeeen sur À COMPLÉTER/VÉRIFIER par ls devs]
+## Fonctionnalités
 
 ### Structure de données
 - `Ndarray` : Tableau multidimensionnel (1D et 2D) de type `double[][]`
@@ -34,7 +34,7 @@ A Java library for multidimensional array computation, inspired by NumPy.
 - `ravel()` : Transformation d'une matrice 2D en 1D sur place.
 
 ### Affichage
-- `print()` : Fonctoin qui retourne une `String` représentant l'affichage formaté du tableau
+- `print()` : Fonction qui retourne une `String` représentant l'affichage formaté du tableau
 
 ## Choix d'outils
 
@@ -74,7 +74,7 @@ Outils choisis en plus :
 - `develop` : branche d'intégration
 - `feature/*` : une branche par fonctionnalité, créée depuis `develop`
 
-### Procédure (MDRRRR this is what we were supposed to have done, but we will have to change it, or i'll talk to the team and see what to do)
+### Procédure
 1. Chaque développeur crée une branche `feature/nom` depuis `develop`
 2. Avant ouverture d'une PR, rebase sur `develop` :
 ```bash
