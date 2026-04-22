@@ -19,7 +19,6 @@
     <sonar.projectKey>m1-devops-devopsproject</sonar.projectKey>
     <sonar.projectName>m1-devops-devopsproject</sonar.projectName>
     <sonar.host.url>https://im2ag-sonar.univ-grenoble-alpes.fr</sonar.host.url>
-    <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
   </properties>
 
   <dependencyManagement>

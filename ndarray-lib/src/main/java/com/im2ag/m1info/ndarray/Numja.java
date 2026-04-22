@@ -4,6 +4,13 @@ import java.util.Arrays;
 
 abstract public class Numja {
 
+
+    /**
+     * <p>Fonction pour calculer la taille d'une matrice
+     * </p>
+     * @param shape_in La dimension de la matrice
+     * @return Le nombre d'élements dans la matrice
+     */
     public static int calcSize(int[] shape_in){
         int size = 1;
         for (int j : shape_in) {
@@ -12,6 +19,12 @@ abstract public class Numja {
         return size;
     }
 
+    /**
+     * <p>Constructeur d'un Ndarray 1D
+     * </p>
+     * @param data_in La liste des doubles qui composerons la matrice 1D
+     * @return Retourne un objet Ndarray représentant la matrice 1D
+     */
     public static Ndarray array(double... data_in){
 
         double[][] tmp_arr = new double[1][data_in.length];
@@ -24,6 +37,12 @@ abstract public class Numja {
         return new Ndarray(tmp_arr,newsize,tmp_arr.length,shape);
     }
 
+    /**
+     * <p>Constructeur d'un Ndarray 2D
+     * </p>
+     * @param data_in La liste des  doubles[] qui composerons la matrice 2D
+     * @return Retourne un objet Ndarray représentant la matrice 2D
+     */
     public static Ndarray array(double[]... data_in){
         int dimension = data_in.length;
         double[][] tmp_arr = new double[dimension][data_in[0].length];
@@ -36,7 +55,12 @@ abstract public class Numja {
         return new Ndarray(tmp_arr,newsize,tmp_arr.length,shape);
     }
 
-
+    /**
+     * <p>Fonctoin de création d'une matrice contenant que des zéros
+     * </p>
+     * @param shape_in un couple d'Integer représentant la forme de la matrice
+     * @return Retourne un objet Ndarray représentant la matrice 1D/2D
+     */
     public static Ndarray zeros(int[] shape_in){
         int dimension = shape_in.length;
         int size = calcSize(shape_in);
@@ -64,7 +88,14 @@ abstract public class Numja {
         }
         return new Ndarray(tmp_arr.clone(),size,dimension,new int[]{m,n});
     }
-
+    /**
+     * <p>Fonctoin de création d'une matrice contenant des nombre allant de start à end avec un pas de step
+     * </p>
+     * @param start le début de la séquancede nombre
+     * @param end la fin de la séquance de nombre
+     * @param step le pas entre chaque nombre
+     * @return Retourne un objet Ndarray représentant la matrice 1D
+     */
     public static Ndarray arange(double start, double end, double step){
         if(end > start && step < 0 || end < start && step > 0 ){
             throw new IncorrectDimension("Erreur sur les bornes et le pas");
@@ -82,6 +113,14 @@ abstract public class Numja {
         return new Ndarray(tmp_arr.clone(),size,dimension, shape);
     }
 
+    /**
+     * <p>Fonction d'addition equivalente à l'opérateur +     *
+     * Les matrices doivent avoir la même dimension sinon une exception IncorrectDimension est levée
+     * </p>
+     * @param mat1 La matrice 1
+     * @param mat2 La matrice 2
+     * @return Une matrice Ndarray qui est le résultat de mat1 + mat2
+     */
     public static Ndarray add(Ndarray mat1,Ndarray mat2){
         if (!Arrays.equals(mat1.shape, mat2.shape)){
             throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
@@ -96,7 +135,14 @@ abstract public class Numja {
         }
         return new Ndarray(res,mat1.size,mat1.ndim,mat1.shape);
     }
-
+    /**
+     * <p>Fonction de soustraction equivalente à l'opérateur +
+     * Les matrices doivent avoir la même dimension sinon une exception IncorrectDimension est levée
+     * </p>
+     * @param mat1 La matrice 1
+     * @param mat2 La matrice 2
+     * @return Une matrice Ndarray qui est le résultat de mat1 - mat2
+     */
     public static Ndarray sub(Ndarray mat1,Ndarray mat2){
         if (!Arrays.equals(mat1.shape, mat2.shape)){
             throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");
@@ -112,6 +158,16 @@ abstract public class Numja {
         }
         return new Ndarray(res,mat1.size,mat1.ndim,mat1.shape);
     }
+
+    /**
+     * <p>Fonction de multiplication equivalente à l'opérateur *
+     * Les matrices doivent avoir la même dimension m et p sinon une exception IncorrectDimension est levée
+     * avec mat1(m,n) et mat2(n,p)
+     * </p>
+     * @param mat1 La matrice 1
+     * @param mat2 La matrice 2
+     * @return Une matrice Ndarray qui est le résultat de mat1 * mat2
+     */
     public static Ndarray mul(Ndarray mat1, Ndarray mat2){
         if (mat1.shape[0] != mat2.shape[1]){
             throw new IncorrectDimension("Erreur: Les matrices n'ont pas les mêmes dimensions");

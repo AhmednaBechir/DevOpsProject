@@ -15,23 +15,26 @@ A Java library for multidimensional array computation, inspired by NumPy.
 ## Fonctionnalités [bieeeen sur À COMPLÉTER/VÉRIFIER par ls devs]
 
 ### Structure de données
-- `Ndarray` : tableau multidimensionnel (1D et 2D(i saw a comment saying "j'ai pas encore cherche a gerer a 2 dimension, does that mean they dont gerent 2 dimension??")) de type `double`
-  - Attributs : `ndim`, `shape`, `size` et `list??`
+- `Ndarray` : Tableau multidimensionnel (1D et 2D) de type `double[][]`
+  - Attributs : `double[][]`, `ndim`, `shape`, `size`
 
 ### Fonctions de création (Numja)
-- `array()` : création depuis un tableau Java
-- `zeros()` : création d'un tableau rempli de zéros
-- `arange()` : création depuis une séquence de nombres
+- `array()` : Création depuis une liste de `double` ou une liste de `double[]` et renvoi un Ndarray
+- `zeros()` : Création d'un tableau rempli de zéros. Prend en paramete un `int[]` de taille 2 contenant les deux dimensions. Renvoi un Ndarray.
+- `arange()` : Création depuis une séquence de nombres. Prend en paramètre trois entier `start`, `end`, `step` pour définier le début, la fin et le pas de la séquence. Renvoi un Ndarray de 1D.
 
 ### Opérations
-- `add()` / `+=` : addition élément par élément
-- `sub()` / `-=` : soustraction élément par élément
-- `mul()` : multiplication matricielle
+- `Numja.add(Ndarray mat1, Ndarray mat2)` : Addition élément par élément des matrices mat1 et mat2. Retourne une matrice `mat1+mat2`.
+- `Ndarray.add(Ndarray mat_in)` : Addition élément par élément sur place.
+- `Numja.sub(Ndarray mat1, Ndarray mat2)` : Soustraction élément par élément des matrices mat1 et mat2. Retourne une matrice `mat1-mat2`.
+- `Ndarray.sub(Ndarray mat_in)` : Soustraction élément par élément sur place.
+- `Numja.mul(Ndarray mat1, Ndarray mat2)` : Multiplication élément par élément des matrices mat1 et mat2. Retourne une matrice `mat1*mat2`.
+- `Ndarray.mul(Ndarray mat_in)` : Multiplication élément par élément sur place. Les dimensions de mat1 devienne -> `mat1(m,n)*mat2(n,p) = mat1(m,p)` 
 - `reshape()` : i don't think i know what this is, i think it just changing the dimensions of a matrice?
 - `ravel()` : same for this idk, but it's maybe like victor said,  its flattening the matrice?
 
 ### Affichage
-- `print()` : affichage formaté du tableau
+- `print()` : Fonctoin qui retourne une `String` représentant l'affichage formaté du tableau
 
 ## Choix d'outils
 
