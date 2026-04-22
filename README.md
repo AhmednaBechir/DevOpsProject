@@ -46,7 +46,7 @@ Outils choisis en plus :
 - **Jacoco** : intégré nativement à Maven, standard pour la couverture de code Java
 - **GitHub Actions** : intégré à GitHub, pas besoin de service externe, configuration en YAML
 - **GitHub Packages** : intégré à GitHub, déploiement du JAR sans compte externe
-- **GitHub Pages + maven-site-plugin** : génération automatique de site avec javadoc et rapports
+- **GitHub Pages + maven-site-plugin** : génération automatique de site avec rapports
 - **SonarQube (instance UFR)** : analyse statique, instance fournie par l'UFR donc pas de setup serveur
 - **Docker + GHCR** : conteneurisation de la démo, registre intégré à GitHub
 
@@ -57,7 +57,7 @@ Outils choisis en plus :
 - **CI** (`ci.yml`) : Déclenché sur push `feature/**` et PR vers `develop`/`main` — compile et lance les tests unitaires, génère et publie le rapport de couverture Jacoco en artifact
 - **CI Develop** (`ci-develop.yml`) : Déclenché sur push vers `develop` — même chose, rapport de couverture considéré comme version de référence
 - **Publish** (`publish.yml`) : Déclenché sur push vers `main` — publie le JAR sur GitHub Packages et construit et pousse l'image Docker sur GHCR
-- **Pages** (`pages.yml`) : Déclenché sur push vers `main` — génère le site Maven (javadoc, rapports) et le déploie sur GitHub Pages
+- **Pages** (`pages.yml`) : Déclenché sur push vers `main` — génère le site Maven ( rapports) et le déploie sur GitHub Pages
 - **SonarQube** (`sonar.yml`) : Déclenché sur push/PR vers `main`/`develop` — analyse statique du code, résultats visibles sur l'instance UFR
 
 ### Protection de la branche main
