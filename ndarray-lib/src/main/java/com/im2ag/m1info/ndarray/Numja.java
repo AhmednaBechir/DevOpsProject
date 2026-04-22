@@ -134,32 +134,35 @@ abstract public class Numja {
 
     public static Ndarray sqrt(Ndarray arr) {
         int[] shape = arr.getShape();
+        Ndarray new_arr = new Ndarray(new double[shape[0]][shape[1]], arr.size, arr.ndim, shape);
         for(int i = 0; i < shape[0]; i++) {
             for (int j = 0; j < shape[1]; j++) {
-                arr.data[i][j] = Math.sqrt(arr.data[i][j]);
+                new_arr.data[i][j] = Math.sqrt(arr.data[i][j]);
             }
         }
-        return arr;
+        return new_arr;
     }
 
     public static Ndarray exp(Ndarray arr) {
         int[] shape = arr.getShape();
+        Ndarray new_arr = new Ndarray(new double[shape[0]][shape[1]], arr.size, arr.ndim, shape);
         for(int i = 0; i < shape[0]; i++) {
             for (int j = 0; j < shape[1]; j++) {
-                arr.data[i][j] = Math.exp(arr.data[i][j]);
+                new_arr.data[i][j] = Math.exp(arr.data[i][j]);
             }
         }
-        return arr;
+        return new_arr;
     }
 
     public static Ndarray pow(Ndarray arr, double x) {
         int[] shape = arr.getShape();
+        Ndarray new_arr = new Ndarray(new double[shape[0]][shape[1]], arr.size, arr.ndim, shape);
         for(int i = 0; i < shape[0]; i++) {
             for (int j = 0; j < shape[1]; j++) {
-                arr.data[i][j] = Math.pow(arr.data[i][j], x);
+                new_arr.data[i][j] = Math.pow(arr.data[i][j], x);
             }
         }
-        return arr;
+        return new_arr;
     }
 
 }

@@ -18,7 +18,7 @@ public class App {
         System.out.println();
 
         Ndarray arr3 = Numja.array(1.0,2.0,3.0);
-        arr.print();
+        arr3.print();
 
         Ndarray arr4 = Numja.pow(arr3, 3);
 
