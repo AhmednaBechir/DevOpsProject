@@ -66,7 +66,7 @@ class NumjaTest {
 		double[] expected = {1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5};
 		Ndarray array_test = Numja.arange(1, 5, 0.5);
 		for (int i = 0; i < array_test.shape[0]; i++) {
-			assertEquals(expected[i], array_test.data[i], "arangeTest: data");
+			assertEquals(expected[i], array_test.data[0][i], "arangeTest: data");
 		}
 	}
 	
