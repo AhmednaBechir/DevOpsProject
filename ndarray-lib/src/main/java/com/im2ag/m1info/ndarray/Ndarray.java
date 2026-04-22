@@ -102,4 +102,8 @@ public class Ndarray {
     int getSize() {
         return size;
     }
+
+    int[] getShape() {
+        return shape.clone();
+    }
 }
