@@ -61,11 +61,15 @@ Outils choisis en plus :
 - **SonarQube** (`sonar.yml`) : Déclenché sur push/PR vers `main`/`develop` — analyse statique du code, résultats visibles sur l'instance UFR
 
 ### Protection de la branche main
-- PR obligatoire avant tout merge
+
+- Pull Request obligatoire avant merge
 - 1 approbation requise
-- Approbations invalidées si nouveaux commits
-- CI doit être vert (status check obligatoire)
-- Les discussions doivent être résolues avant merge
+- Réinitialisation des approbations si nouveaux commits
+- Approbation requise sur le dernier commit (latest push)
+- Review obligatoire des Code Owners 
+- Les status checks doivent passer (CI)
+- La branche doit être à jour avant merge
+- Interdiction de bypass (même pour les admins)
 
 ## Workflow Git
 
@@ -80,7 +84,7 @@ Outils choisis en plus :
 ```bash
    git fetch origin
    git rebase origin/develop
-   git push 
+   git push --force-with-lease
 ```
 3. PR ouverte sur `develop` → review de code par un autre membre → approbation requise
 4. CI doit passer (build + tests) avant de pouvoir merger
@@ -91,6 +95,11 @@ Outils choisis en plus :
 - Les approbations sont invalidées si de nouveaux commits sont poussés
 - Le CI doit être vert (status check obligatoire)
 - Les discussions doivent être résolues avant merge
+
+### Cas particuliers
+
+Les modifications liées à l’Ops (CI/CD, workflows, configuration pom.xml ..etc)
+peuvent être intégrées directement via une Pull Request vers `main`, avec approbation. Le workflow standard (feature → develop → main) ne s'applique que sur les fonctionnalités.
 
 ## Images Docker
 
@@ -114,6 +123,20 @@ Outils choisis en plus :
 - `ravelTest` : vérification de transformation de matrices 2D en 1D
 - `getSizeTest`
 
+
+## Travaux en cours
+
+Certaines fonctionnalités ont été commencées mais non finalisées avant la deadline :
+
+- **feature/UsefulMathOp** :
+  - `pow(Ndarray arr, double x)`
+  - `exp(Ndarray arr)`
+  - `sqrt(Ndarray arr)`
+  → opérations mathématiques élément par élément
+
+- **feature/broadcast** :
+  - Implémentation du broadcasting (partiellement fonctionnelle)
+
 ## Feedback
 
-If you guys have feedback it will be added here.
+Pas de feedback.
