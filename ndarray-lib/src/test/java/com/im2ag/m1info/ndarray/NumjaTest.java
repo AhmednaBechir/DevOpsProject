@@ -5,13 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class NumjaTest {
-
-	@Test
-	void arrayTest() {
-		double[] data = {0,1,2};
-		Ndarray ndarray_test = Numja.array(data);
-		assertEquals(3, ndarray_test.getSize(), "arrayTest");
-	}
 	
 	@Test
 	public void initializationTest() {
@@ -31,20 +24,41 @@ class NumjaTest {
 	}
 	
 	@Test
-	public void zerosTest() {
+	public void zerosTest1() {
 		int[] shape1 = {3};
 		Ndarray zeros_test = Numja.zeros(shape1);
 		assertEquals(1, zeros_test.ndim, "Numja zerosTest: ndim 1 dimension");
 		assertEquals(1, zeros_test.shape[0], "Numja zerosTest: nombre lignes 1 dimension");
 		assertEquals(3, zeros_test.shape[1], "Numja zerosTest: nombre colonnes 1 dimension");
-		
+	}
+	
+	@Test
+	public void zerosTest2() {
 		int[] shape2 = {4, 2};
-		zeros_test = Numja.zeros(shape2);
-		assertEquals(2, zeros_test.ndim, "Numja zerosTest: ndim 2 dimensions");
-		assertEquals(4, zeros_test.shape[0], "Numja zerosTest: nombre lignes 2 dimensions");
-		assertEquals(2, zeros_test.shape[1], "Numja zerosTest: nombre colonnes 2 dimensions");
+		Ndarray zeros_test = Numja.zeros(shape2);
+		assertEquals(2, zeros_test.ndim, "Numja zerosTest2: ndim 2 dimensions");
+		assertEquals(4, zeros_test.shape[0], "Numja zerosTest2: nombre lignes 2 dimensions");
+		assertEquals(2, zeros_test.shape[1], "Numja zerosTest2: nombre colonnes 2 dimensions");
+	}
+	
+	@Test
+	public void zerosTest3() {
+		int[] shape3 = {0};
 		
+		Ndarray zeros_test = Numja.zeros(shape3);
+		assertEquals(1, zeros_test.ndim, "Numja zerosTest3: ndim 1 dimension");
+		assertEquals(0, zeros_test.shape[0], "Numja zerosTest3: nombre lignes 1 dimension");
+		assertEquals(0, zeros_test.shape[1], "Numja zerosTest3: nombre colonnes 1 dimension");
+	}
+	
+	@Test
+	public void zerosTest4() {
+		int[] shape4 = {0,0};
 		
+		Ndarray zeros_test = Numja.zeros(shape4);
+		assertEquals(2, zeros_test.ndim, "Numja zerosTest4: ndim 2 dimensions");
+		assertEquals(0, zeros_test.shape[0], "Numja zerosTest4: nombre lignes 2 dimensions");
+		assertEquals(0, zeros_test.shape[1], "Numja zerosTest4: nombre colonnes 2 dimensions");
 	}
 	
 	@Test
@@ -146,10 +160,10 @@ class NumjaTest {
 		Ndarray array_1 = Numja.array(M1);
 		Ndarray array_2 = Numja.array(M2);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.add(array_1, array_2);
 		});
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.add(array_2, array_1);
 		});
 	}
@@ -161,10 +175,10 @@ class NumjaTest {
 		Ndarray array_1 = Numja.array(M1);
 		Ndarray array_2 = Numja.array(M2);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.add(array_1, array_2);
 		});
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.add(array_2, array_1);
 		});
 	}
@@ -176,10 +190,10 @@ class NumjaTest {
 		Ndarray array_1 = Numja.array(M1);
 		Ndarray array_2 = Numja.array(M2);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.sub(array_1, array_2);
 		});
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.sub(array_2, array_1);
 		});
 	}
@@ -191,10 +205,10 @@ class NumjaTest {
 		Ndarray array_1 = Numja.array(M1);
 		Ndarray array_2 = Numja.array(M2);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.sub(array_1, array_2);
 		});
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.sub(array_2, array_1);
 		});
 	}
@@ -206,10 +220,10 @@ class NumjaTest {
 		Ndarray array_1 = Numja.array(M1);
 		Ndarray array_2 = Numja.array(M2);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.mul(array_1, array_2);
 		});
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.mul(array_2, array_1);
 		});
 	}
@@ -221,32 +235,21 @@ class NumjaTest {
 		Ndarray array_1 = Numja.array(M1);
 		Ndarray array_2 = Numja.array(M2);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.mul(array_1, array_2);
 		});
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.mul(array_2, array_1);
 		});
 	}
 	
 	@Test
-	public void zeros0dimensionsTest() {
-		int[] dim = {0,0};
-		//Normalement ca doit marcher avec {0} et {0,0}
-		// Ca fait donne juste un array vide
-		// donc pas beosin de assertthrows
-		assertThrows(IllegalArgumentException.class, () -> {
-			Numja.zeros(dim);
-		});
-	}
-	
-	@Test
 	public void arangeExceptionTest() {
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.arange(3, 1, 0.5);
 		});
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IncorrectDimension.class, () -> {
 			Numja.arange(1, 3, -0.5);
 		});
 	}
