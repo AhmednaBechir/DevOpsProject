@@ -23,9 +23,6 @@ public class Ndarray {
 
     }
 
-    public void reshape(int axe1, int axe2){
-
-    }
     // Fonction d'addition equivalente à l'opérateur +=
     public void add(Ndarray array_in){
         if (!Arrays.equals(this.shape, array_in.shape)){
@@ -74,7 +71,7 @@ public class Ndarray {
     }
 
 
-    public void print(){
+    /*public void print(){
         String str ="";
         if (this.shape[0] > 1){
             str = str.concat("[");
@@ -90,6 +87,24 @@ public class Ndarray {
         }
 
         System.out.println(str);
+    }*/
+
+    public String print(){
+        String str ="";
+        if (this.shape[0] > 1){
+            str = str.concat("[");
+        }
+        for (int i = 0; i < this.shape[0]; i++){
+            str = str.concat(Arrays.toString(this.data[i]));
+            if (i < (this.shape[0]-1)){
+                str =  str.concat("\n");
+            }
+        }
+        if (this.shape[0] > 1){
+            str =  str.concat("]");
+        }
+
+        return (str);
     }
 
     List getList() {

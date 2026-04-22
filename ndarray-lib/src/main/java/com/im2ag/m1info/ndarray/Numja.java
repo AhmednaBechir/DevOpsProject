@@ -42,8 +42,15 @@ abstract public class Numja {
         int size = calcSize(shape_in);
         int m, n;
         if (shape_in.length == 1){
-            m = 1;
-            n = shape_in[0];
+            if(shape_in[0] == 0){
+                m = shape_in[0];
+                n = shape_in[0];
+
+            }else {
+                m = 1;
+                n = shape_in[0];
+            }
+
         } else if (shape_in.length == 2) {
             m = shape_in[0];
             n = shape_in[1];
